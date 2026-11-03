@@ -20,6 +20,20 @@ export function ContactIntro({ title = "Let’s Talk About Your Build", lead = "
   return <section className="contact-intro"><h2>{title}</h2><div className="title-rule title-rule--dark" /><p>{lead}</p><div className="contact-grid"><a href={`mailto:${contact.email}`}><ContactIcon type="email" /><strong>Email</strong><span>{contact.email}</span></a><a href={contact.phoneHref}><ContactIcon type="phone" /><strong>Phone</strong><span>{contact.phoneDisplay}</span></a><a href={contact.map} target="_blank" rel="noreferrer"><ContactIcon type="location" /><strong>Location</strong><span>Auckland</span></a></div></section>;
 }
 
+export function ContactMap({ wide = false }: { wide?: boolean }) {
+  return (
+    <div className={wide ? "contact-map-wide" : "map-card"}>
+      <iframe
+        src={contact.mapEmbed}
+        title={`Google Map showing ${contact.address}`}
+        loading="lazy"
+        allowFullScreen
+        referrerPolicy="no-referrer-when-downgrade"
+      />
+    </div>
+  );
+}
+
 export function ContactForm({ wide = false }: { wide?: boolean }) {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [statusMessage, setStatusMessage] = useState("");
@@ -80,7 +94,7 @@ export function ContactForm({ wide = false }: { wide?: boolean }) {
   return (
     <section className={`contact-form-section ${wide ? "contact-form-section--wide" : ""}`}>
       <form onSubmit={submit} onChange={resetSubmissionAfterEdit} aria-busy={status === "sending"}><h2>Get In Touch</h2><label>Name<input name="name" required minLength={2} maxLength={100} autoComplete="name" placeholder="Name" disabled={status === "sending"} /></label><label>Email<input name="email" required type="email" maxLength={254} autoComplete="email" placeholder="Enter your email" disabled={status === "sending"} /></label><label>Select a Service<select name="service" required defaultValue="" disabled={status === "sending"}><option value="" disabled>Select one...</option>{enquiryServices.map((service) => <option key={service}>{service}</option>)}</select></label><label>Message<textarea name="message" required minLength={10} maxLength={5000} placeholder="Type your message here..." disabled={status === "sending"} /></label><label className="form-honeypot" aria-hidden="true">Company<input name="company" tabIndex={-1} autoComplete="off" disabled={status === "sending"} /></label><button className="form-submit" type="submit" disabled={status === "sending"}><VanArtwork /><span>{status === "sending" ? "Sending…" : "Submit"}</span></button><p className={`form-status form-status--${status}`} role={status === "error" ? "alert" : "status"} aria-live="polite">{statusMessage}</p></form>
-      {!wide && <a className="map-card" href={contact.map} target="_blank" rel="noreferrer" aria-label="Open Great Dane Builders location in Google Maps"><Image src="/assets/auckland-map.png" alt="Map of the Auckland service area" fill sizes="(max-width: 780px) calc(100vw - 44px), 50vw" unoptimized /></a>}
+      {!wide && <ContactMap />}
     </section>
   );
 }

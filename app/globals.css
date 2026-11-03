@@ -194,8 +194,7 @@ h2 { color: var(--muted); font-size: clamp(46px, 5.55vw, 80px); font-weight: 500
 .form-status--success { color: #d8f1d8; }
 .form-status--error { color: #ffd1d1; }
 .map-card, .contact-map-wide { position: relative; display: block; overflow: hidden; border-radius: 28px; min-height: 624px; }
-.map-card img, .contact-map-wide img { object-fit: cover; transition: transform .5s ease; }
-.map-card:hover img, .contact-map-wide:hover img { transform: scale(1.03); }
+.map-card iframe, .contact-map-wide iframe { position: absolute; inset: 0; display: block; width: 100%; height: 100%; border: 0; }
 .contact-form-section--wide { grid-template-columns: 1fr; padding-top: 0; min-height: auto; }
 .contact-form-section--wide form { min-height: 600px; border-radius: 100px; padding: 60px 6%; }
 .contact-form-section--wide h2 { display: none; }
