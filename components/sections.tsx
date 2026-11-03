@@ -11,7 +11,7 @@ export function Values({ dark = false }: { dark?: boolean }) {
 
 export function Credentials() {
   return (
-    <Reveal><section className="credentials"><h2>Building With Confidence</h2><div className="title-rule title-rule--dark" /><p>Great Dane Builders brings LBP credentials, full insurance cover and a 10-year guarantee to residential building projects. With a hands-on approach, clear communication and a commitment to quality workmanship, we take care of the details from start to finish, giving you confidence that your home is in capable hands throughout your renovation or new build.</p><Image src="/assets/lbp-logo.png" alt="Licensed Building Practitioners" width={382} height={150} /></section></Reveal>
+    <Reveal><section className="credentials"><h2>Building With Confidence</h2><div className="title-rule title-rule--dark" /><p>Great Dane Builders brings LBP credentials, full insurance cover and a 10-year guarantee to residential building projects. With a hands-on approach, clear communication and a commitment to quality workmanship, we take care of the details from start to finish, giving you confidence that your home is in capable hands throughout your renovation or new build.</p><Image src="/assets/lbp-logo.png" alt="Licensed Building Practitioners" width={382} height={150} unoptimized /></section></Reveal>
   );
 }
 
@@ -23,6 +23,6 @@ export function AboutPreview() {
 
 export function ServiceBlock({ id, title, image, dark = false, imageFirst = false, children, bullets }: { id: string; title: string; image: string; dark?: boolean; imageFirst?: boolean; children: React.ReactNode; bullets?: string[] }) {
   return (
-    <Reveal><section id={id} className={`service-block ${dark ? "service-block--dark dark-panel" : ""} ${imageFirst ? "service-block--image-first" : ""}`}><div className="service-copy"><h2>{title}</h2><div className={`title-rule ${dark ? "" : "title-rule--dark"}`} />{children}{bullets && <><strong>This service can include:</strong><ul>{bullets.map((item) => <li key={item}>{item}</li>)}</ul></>}</div><div className="service-image"><Image src={image} alt="" fill sizes="(max-width: 700px) 100vw, 50vw" /></div></section></Reveal>
+    <Reveal><section id={id} className={`service-block ${dark ? "service-block--dark dark-panel" : ""} ${imageFirst ? "service-block--image-first" : ""}`}><div className="service-copy"><h2>{title}</h2><div className={`title-rule ${dark ? "" : "title-rule--dark"}`} />{children}{bullets && <><strong>This service can include:</strong><ul>{bullets.map((item) => <li key={item}>{item}</li>)}</ul></>}</div><div className="service-image"><Image src={image} alt="" fill quality={100} sizes="(max-width: 780px) calc(100vw - 44px), 50vw" /></div></section></Reveal>
   );
 }

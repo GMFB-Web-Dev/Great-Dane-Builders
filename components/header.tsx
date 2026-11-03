@@ -34,7 +34,12 @@ export function Header() {
             const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
             return item.menu ? (
               <div className={`nav-menu ${active ? "is-active" : ""}`} key={item.href}>
-                <Link href={item.href}>{item.label}<span aria-hidden>⌄</span></Link>
+                <Link href={item.href}>
+                  {item.label}
+                  <svg className="nav-chevron" viewBox="0 0 12 7" aria-hidden="true" focusable="false">
+                    <path d="M1 1l5 5 5-5" />
+                  </svg>
+                </Link>
                 <div className="nav-dropdown">
                   <Link href="/services/renovations">Renovations</Link>
                   <Link href="/services#outdoor-living">Outdoor Living</Link>

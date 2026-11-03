@@ -4,13 +4,23 @@ import Link from "next/link";
 export function Logo({ className = "" }: { className?: string }) {
   return (
     <Link href="/" aria-label="Great Dane Builders home" className={`brand-logo ${className}`}>
-      <Image src="/assets/gdb-logo.png" alt="Great Dane Builders" width={500} height={500} priority />
+      <Image src="/assets/gdb-logo.png" alt="Great Dane Builders" width={500} height={500} loading="eager" unoptimized />
     </Link>
   );
 }
 
+export function VanArtwork({ variant = "light" }: { variant?: "light" | "dark" }) {
+  return <>
+    <Image className="van-link__outline" src={variant === "light" ? "/assets/van-light.png" : "/assets/van-dark.png"} alt="" width={2172} height={724} unoptimized />
+    <Image className="van-link__highlight" src="/assets/van-hover.png" alt="" width={2172} height={724} unoptimized />
+  </>;
+}
+
 export function VanLink({ href, children, variant = "light", external = false }: { href: string; children: React.ReactNode; variant?: "light" | "dark"; external?: boolean }) {
-  const content = <><Image src={variant === "light" ? "/assets/van-light.png" : "/assets/van-dark.png"} alt="" width={2172} height={724} /><span>{children}</span></>;
+  const content = <>
+    <VanArtwork variant={variant} />
+    <span>{children}</span>
+  </>;
   if (external) return <a className={`van-link van-link--${variant}`} href={href} target="_blank" rel="noreferrer">{content}</a>;
   return <Link className={`van-link van-link--${variant}`} href={href}>{content}</Link>;
 }

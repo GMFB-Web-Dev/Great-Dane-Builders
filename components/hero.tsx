@@ -5,7 +5,7 @@ import { VanLink } from "./brand";
 export function Hero({ image, title, text, secondaryLabel = "Services", secondaryHref = "/services", imagePosition = "center" }: { image: string; title: string; text: string; secondaryLabel?: string; secondaryHref?: string; imagePosition?: string }) {
   return (
     <section className="hero">
-      <Image className="hero-image" src={image} alt="" fill priority sizes="100vw" style={{ objectPosition: imagePosition }} />
+      <Image className="hero-image" src={image} alt="" fill preload quality={100} sizes="100vw" style={{ objectPosition: imagePosition }} />
       <div className="hero-shade" />
       <Header />
       <div className="hero-content">

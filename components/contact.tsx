@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { FormEvent, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
+import { enquiryServices } from "@/lib/enquiries";
 import { contact } from "@/lib/site-data";
+import { VanArtwork } from "./brand";
 
 function ContactIcon({ type }: { type: "email" | "phone" | "location" }) {
   return <span className="contact-icon" aria-hidden>{type === "email" ? "✉" : type === "phone" ? "☎" : "⌖"}</span>;
@@ -13,19 +15,66 @@ export function ContactIntro({ title = "Let’s Talk About Your Build", lead = "
 }
 
 export function ContactForm({ wide = false }: { wide?: boolean }) {
-  const [sent, setSent] = useState(false);
-  function submit(event: FormEvent<HTMLFormElement>) {
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [statusMessage, setStatusMessage] = useState("");
+  const submissionId = useRef<string | null>(null);
+
+  async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    const subject = encodeURIComponent(`Website enquiry: ${form.get("service") || "Building project"}`);
-    const body = encodeURIComponent(`Name: ${form.get("name")}\nEmail: ${form.get("email")}\nService: ${form.get("service")}\n\n${form.get("message")}`);
-    setSent(true);
-    window.location.href = `mailto:${contact.email}?subject=${subject}&body=${body}`;
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
+    submissionId.current ??= crypto.randomUUID();
+    setStatus("sending");
+    setStatusMessage("Sending your enquiry…");
+
+    try {
+      const response = await fetch("/api/enquiries", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Idempotency-Key": submissionId.current,
+        },
+        body: JSON.stringify({
+          name: form.get("name"),
+          email: form.get("email"),
+          service: form.get("service"),
+          message: form.get("message"),
+          company: form.get("company"),
+        }),
+      });
+      const result = (await response.json().catch(() => null)) as { error?: string } | null;
+
+      if (!response.ok) {
+        throw new Error(result?.error || "We could not send your enquiry. Please try again.");
+      }
+
+      formElement.reset();
+      submissionId.current = null;
+      setStatus("success");
+      setStatusMessage("Thanks — your enquiry has been sent. Dane and Pat will be in touch.");
+    } catch (error) {
+      setStatus("error");
+      setStatusMessage(
+        error instanceof Error
+          ? error.message
+          : "We could not send your enquiry. Please try again.",
+      );
+    }
   }
+
+  function resetSubmissionAfterEdit() {
+    if (status === "sending") return;
+    submissionId.current = null;
+    if (status !== "idle") {
+      setStatus("idle");
+      setStatusMessage("");
+    }
+  }
+
   return (
     <section className={`contact-form-section ${wide ? "contact-form-section--wide" : ""}`}>
-      <form onSubmit={submit}><h2>Get In Touch</h2><label>Name<input name="name" required placeholder="Name" /></label><label>Email<input name="email" required type="email" placeholder="Enter your email" /></label><label>Select a Service<select name="service" required defaultValue=""><option value="" disabled>Select one...</option><option>Renovations, Additions & Alterations</option><option>Outdoor Living</option><option>New Builds</option><option>Project Management</option></select></label><label>Message<textarea name="message" required placeholder="Type your message here..." /></label><button className="form-submit" type="submit"><Image src="/assets/van-light.png" alt="" width={2172} height={724} /><span>Submit</span></button>{sent && <p className="form-status">Your email app should open with the enquiry ready to send.</p>}</form>
-      {!wide && <a className="map-card" href={contact.map} target="_blank" rel="noreferrer" aria-label="Open Great Dane Builders location in Google Maps"><Image src="/assets/auckland-map.png" alt="Map of the Auckland service area" fill sizes="(max-width: 700px) 100vw, 50vw" /></a>}
+      <form onSubmit={submit} onChange={resetSubmissionAfterEdit} aria-busy={status === "sending"}><h2>Get In Touch</h2><label>Name<input name="name" required minLength={2} maxLength={100} autoComplete="name" placeholder="Name" disabled={status === "sending"} /></label><label>Email<input name="email" required type="email" maxLength={254} autoComplete="email" placeholder="Enter your email" disabled={status === "sending"} /></label><label>Select a Service<select name="service" required defaultValue="" disabled={status === "sending"}><option value="" disabled>Select one...</option>{enquiryServices.map((service) => <option key={service}>{service}</option>)}</select></label><label>Message<textarea name="message" required minLength={10} maxLength={5000} placeholder="Type your message here..." disabled={status === "sending"} /></label><label className="form-honeypot" aria-hidden="true">Company<input name="company" tabIndex={-1} autoComplete="off" disabled={status === "sending"} /></label><button className="form-submit" type="submit" disabled={status === "sending"}><VanArtwork /><span>{status === "sending" ? "Sending…" : "Submit"}</span></button><p className={`form-status form-status--${status}`} role={status === "error" ? "alert" : "status"} aria-live="polite">{statusMessage}</p></form>
+      {!wide && <a className="map-card" href={contact.map} target="_blank" rel="noreferrer" aria-label="Open Great Dane Builders location in Google Maps"><Image src="/assets/auckland-map.png" alt="Map of the Auckland service area" fill sizes="(max-width: 780px) calc(100vw - 44px), 50vw" unoptimized /></a>}
     </section>
   );
 }
