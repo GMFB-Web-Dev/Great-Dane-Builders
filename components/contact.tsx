@@ -6,8 +6,14 @@ import { enquiryServices } from "@/lib/enquiries";
 import { contact } from "@/lib/site-data";
 import { VanArtwork } from "./brand";
 
+const contactIcons = {
+  email: "/assets/contact-email.svg",
+  phone: "/assets/contact-phone.svg",
+  location: "/assets/contact-location.svg",
+};
+
 function ContactIcon({ type }: { type: "email" | "phone" | "location" }) {
-  return <span className="contact-icon" aria-hidden>{type === "email" ? "✉" : type === "phone" ? "☎" : "⌖"}</span>;
+  return <span className="contact-icon" aria-hidden="true"><Image src={contactIcons[type]} alt="" width={35} height={35} unoptimized /></span>;
 }
 
 export function ContactIntro({ title = "Let’s Talk About Your Build", lead = "Thinking about renovating, extending or building? Get in touch with Great Dane Builders to discuss your project, ask questions and take the first step towards a well-managed build." }: { title?: string; lead?: string }) {

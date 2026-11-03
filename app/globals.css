@@ -170,7 +170,8 @@ h2 { color: var(--muted); font-size: clamp(46px, 5.55vw, 80px); font-weight: 500
 .contact-intro > p { font-size: 18px; }
 .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-top: 38px; }
 .contact-grid a { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; }
-.contact-icon { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: #030303; color: white; font-size: 26px; }
+.contact-icon { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: #030303; }
+.contact-icon img { display: block; width: 35px; height: 35px; }
 .contact-grid strong { font-size: 32px; font-weight: 500; }
 .contact-grid span:last-child { text-decoration: underline; }
 .contact-form-section { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; padding: 33px var(--gutter); min-height: 690px; }
