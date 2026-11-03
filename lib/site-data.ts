@@ -27,11 +27,11 @@ export const galleryImages = [
 ];
 
 export const values = [
-  { title: "Trust", icon: "∞", text: "We keep you informed with clear communication, openness on site and dependable follow-through, so you know what’s happening at every stage of your build." },
-  { title: "Flexibility", icon: "↻", text: "Every project is different. We listen, respond to changing needs and adapt our approach to work around your priorities and the requirements of the job." },
-  { title: "Quality", icon: "✓", text: "We take pride in strong workmanship, tidy sites and attention to detail. From preparation to finishing touches, we do the job properly, without shortcuts." },
-  { title: "Confidence", icon: "⌂", text: "With strong financial management, a commitment to compliance and organised project oversight, we provide a reliable foundation for your building project." },
-  { title: "Practicality", icon: "✎", text: "When challenges arise, we assess the options, explain the choices and find practical ways forward that keep your project moving and your goals in focus." },
+  { title: "Trust", icon: "/assets/value-trust.png", text: "We keep you informed with clear communication, openness on site and dependable follow-through, so you know what’s happening at every stage of your build." },
+  { title: "Flexibility", icon: "/assets/value-flexibility.png", text: "Every project is different. We listen, respond to changing needs and adapt our approach to work around your priorities and the requirements of the job." },
+  { title: "Quality", icon: "/assets/value-quality.png", text: "We take pride in strong workmanship, tidy sites and attention to detail. From preparation to finishing touches, we do the job properly, without shortcuts." },
+  { title: "Confidence", icon: "/assets/value-confidence.png", text: "With strong financial management, a commitment to compliance and organised project oversight, we provide a reliable foundation for your building project." },
+  { title: "Practicality", icon: "/assets/value-practicality.png", text: "When challenges arise, we assess the options, explain the choices and find practical ways forward that keep your project moving and your goals in focus." },
 ];
 
 export const testimonials = [

@@ -5,7 +5,7 @@ import { VanLink } from "./brand";
 
 export function Values({ dark = false }: { dark?: boolean }) {
   return (
-    <Reveal><section className={`${dark ? "dark-panel values-section--dark" : ""} values-section`}><h2>What We Stand By</h2><div className="title-rule title-rule--dark" /><div className="values-grid">{values.map((value) => <article key={value.title}><span className="value-icon">{value.icon}</span><h3>{value.title}</h3><p>{value.text}</p></article>)}</div></section></Reveal>
+    <Reveal><section className={`${dark ? "dark-panel values-section--dark" : ""} values-section`}><h2>What We Stand By</h2><div className="title-rule title-rule--dark" /><div className="values-grid">{values.map((value) => <article key={value.title}><span className="value-icon" aria-hidden="true"><Image src={value.icon} alt="" width={1200} height={1200} unoptimized /></span><h3>{value.title}</h3><p>{value.text}</p></article>)}</div></section></Reveal>
   );
 }
 
