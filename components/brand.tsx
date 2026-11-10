@@ -11,8 +11,8 @@ export function Logo({ className = "" }: { className?: string }) {
 
 export function VanArtwork({ variant = "light" }: { variant?: "light" | "dark" }) {
   return <>
-    <Image className="van-link__outline" src={variant === "light" ? "/assets/van-light.png" : "/assets/van-dark.png"} alt="" width={2172} height={724} unoptimized />
-    <Image className="van-link__highlight" src="/assets/van-hover.png" alt="" width={2172} height={724} unoptimized />
+    <Image className="van-link__fill" src="/assets/van-hover.png" alt="" width={2172} height={724} unoptimized />
+    <Image className={`van-link__outline van-link__outline--${variant}`} src="/assets/van-dark.png" alt="" width={2172} height={724} unoptimized />
   </>;
 }
 
