@@ -4,8 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { galleryImages, services, testimonials } from "@/lib/site-data";
-import { VanArtwork } from "./brand";
-import { ChevronIcon } from "./icons";
+import { ChevronIcon, InlineArrowIcon } from "./icons";
 
 const outdoorLivingImages = [
   { src: "/assets/outdoor-planter.jpg", alt: "New timber fence and raised planter beside a landscaped lawn" },
@@ -48,16 +47,18 @@ export function ServicesCarousel() {
   const { index, setIndex, interactionProps } = useAutoCarousel(services.length, 5200);
   const ordered = useMemo(() => [...services.slice(index), ...services.slice(0, index)], [index]);
   const move = (amount: number) => setIndex((value) => (value + amount + services.length) % services.length);
+  const pageCount = Math.ceil(services.length / 2);
+  const activePage = Math.floor(index / 2);
   return (
     <section className="dark-panel services-carousel" {...interactionProps}>
       <h2>Your Home. Our Expertise.</h2>
       <div className="carousel-stage services-stage">
         <div className="service-cards" key={index}>
-          {ordered.slice(0, 3).map((service) => <Link className="service-card" href={service.href} key={service.title}><Image className="service-card__image" src={service.image} alt="" fill quality={100} sizes="(max-width: 700px) 82vw, 29vw" /><span className="card-shade" /><strong>{service.title}</strong><span className="van-link service-card__learn-more"><VanArtwork /><span>Learn more</span></span></Link>)}
+          {ordered.slice(0, 3).map((service) => <Link className="service-card" href={service.href} key={service.title}><Image className="service-card__image" src={service.image} alt="" fill quality={100} sizes="(max-width: 700px) 82vw, 29vw" /><span className="card-shade" /><strong>{service.title}</strong><span className="service-card__learn-more"><span>Learn more</span><InlineArrowIcon /></span></Link>)}
         </div>
         <Arrows onPrev={() => move(-1)} onNext={() => move(1)} label="service" />
       </div>
-      <div className="slider-controls"><div className="slider-dots">{services.map((_, dot) => <button key={dot} type="button" aria-label={`Show service ${dot + 1}`} className={dot === index ? "is-active" : ""} onClick={() => setIndex(dot)} />)}</div></div>
+      <div className="slider-controls"><div className="slider-dots">{Array.from({ length: pageCount }, (_, page) => <button key={page} type="button" aria-label={`Show services ${page * 2 + 1} and ${Math.min(page * 2 + 2, services.length)}`} className={page === activePage ? "is-active" : ""} onClick={() => setIndex(page * 2)} />)}</div></div>
     </section>
   );
 }
