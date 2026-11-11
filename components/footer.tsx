@@ -1,14 +1,29 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { contact } from "@/lib/site-data";
 import { Logo } from "./brand";
 
+const nav = [
+  { href: "/", label: "Home" },
+  { href: "/services", label: "Services" },
+  { href: "/about", label: "About Us" },
+  { href: "/contact", label: "Contact Us" },
+];
+
 export function Footer() {
+  const pathname = usePathname();
+
   return (
     <footer className="site-footer">
       <div className="footer-top">
         <Logo className="footer-logo" />
         <nav aria-label="Footer navigation">
-          <Link href="/">Home</Link><Link href="/services">Services</Link><Link href="/about">About Us</Link><Link href="/contact">Contact Us</Link>
+          {nav.map((item) => {
+            const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+            return <Link key={item.href} className={active ? "is-active" : ""} href={item.href} aria-current={active ? "page" : undefined}>{item.label}</Link>;
+          })}
         </nav>
         <div className="social-links">
           <a href={contact.instagram} target="_blank" rel="noreferrer" aria-label="Instagram">◎</a>
