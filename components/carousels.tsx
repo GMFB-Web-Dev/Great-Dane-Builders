@@ -151,11 +151,8 @@ export function Gallery({ images = galleryImages, title = "Our Work", dark = tru
   return (
     <section className={`${dark ? "dark-panel" : ""} gallery-section`} {...interactionProps}>
       <h2>{title}</h2>
-      <div className="carousel-stage gallery-stage"><div className="gallery-track" key={index}>{ordered.slice(0, 4).map((item, i) => <div className="gallery-image" key={`${item.src}-${i}`}><Image src={item.src} alt={item.alt} fill quality={100} sizes="(max-width: 780px) calc(100vw - 44px), 25vw" /></div>)}</div></div>
-      <div className="slider-controls gallery-controls">
-        <div className="slider-dots">{images.map((_, dot) => <button key={dot} type="button" aria-label={`Show image ${dot + 1}`} className={dot === index ? "is-active" : ""} onClick={() => setIndex(dot)} />)}</div>
-        <div className="gallery-controls__arrows"><Arrows onPrev={() => move(-1)} onNext={() => move(1)} label="gallery image" /></div>
-      </div>
+      <div className="carousel-stage gallery-stage"><div className="gallery-track" key={index}>{ordered.slice(0, 4).map((item, i) => <div className="gallery-image" key={`${item.src}-${i}`}><Image src={item.src} alt={item.alt} fill quality={100} sizes="(max-width: 780px) calc(100vw - 44px), 25vw" /></div>)}</div><Arrows onPrev={() => move(-1)} onNext={() => move(1)} label="gallery image" /></div>
+      <div className="slider-controls"><div className="slider-dots">{images.map((_, dot) => <button key={dot} type="button" aria-label={`Show image ${dot + 1}`} className={dot === index ? "is-active" : ""} onClick={() => setIndex(dot)} />)}</div></div>
     </section>
   );
 }
@@ -165,6 +162,6 @@ export function Testimonials() {
   const move = (amount: number) => setIndex((value) => (value + amount + testimonials.length) % testimonials.length);
   const current = testimonials[index];
   return (
-    <section className="dark-panel testimonial-section" {...interactionProps}><h2>Trusted By Our Clients</h2><div className="testimonial-row"><button className="carousel-arrow carousel-arrow--prev testimonial-arrow" type="button" onClick={() => move(-1)} aria-label="Previous testimonial"><ChevronIcon direction="left" /></button><blockquote key={index}><p>{current.quote}</p><cite>{current.name}</cite></blockquote><button className="carousel-arrow carousel-arrow--next testimonial-arrow" type="button" onClick={() => move(1)} aria-label="Next testimonial"><ChevronIcon direction="right" /></button></div><div className="slider-dots">{testimonials.map((_, dot) => <button key={dot} type="button" aria-label={`Show testimonial ${dot + 1}`} className={dot === index ? "is-active" : ""} onClick={() => setIndex(dot)} />)}</div></section>
+    <section className="dark-panel testimonial-section" {...interactionProps}><h2>Trusted By Our Clients</h2><div className="testimonial-row"><button className="carousel-arrow testimonial-arrow" type="button" onClick={() => move(-1)} aria-label="Previous testimonial"><ChevronIcon direction="left" /></button><blockquote key={index}><p>{current.quote}</p><cite>{current.name}</cite></blockquote><button className="carousel-arrow testimonial-arrow" type="button" onClick={() => move(1)} aria-label="Next testimonial"><ChevronIcon direction="right" /></button></div><div className="slider-dots">{testimonials.map((_, dot) => <button key={dot} type="button" aria-label={`Show testimonial ${dot + 1}`} className={dot === index ? "is-active" : ""} onClick={() => setIndex(dot)} />)}</div></section>
   );
 }

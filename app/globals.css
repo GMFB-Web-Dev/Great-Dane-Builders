@@ -126,14 +126,12 @@ h2 { color: var(--muted); font-size: clamp(46px, 5.55vw, 80px); font-weight: 500
 .slider-dots { display: flex; gap: 8px; align-items: center; justify-content: center; }
 .slider-dots button { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%; background: #aaa; cursor: pointer; }
 .slider-dots button.is-active { background: white; transform: scale(1.2); }
-.carousel-arrow { position: absolute; top: 50%; z-index: 4; display: grid; place-items: center; width: 54px; height: 54px; padding: 0; border: 0; border-radius: 8px; background: transparent; color: inherit; cursor: pointer; transform: translateY(-50%); }
+.carousel-arrow { position: absolute; top: 50%; z-index: 4; display: grid; place-items: center; width: 54px; height: 54px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: inherit; cursor: pointer; transform: translateY(-50%); transition: background .22s ease, color .22s ease; }
 .carousel-arrow--prev { left: -59px; }
 .carousel-arrow--next { right: -59px; }
-.carousel-arrow:hover, .carousel-arrow:focus-visible { background: transparent; color: inherit; }
+.carousel-arrow:hover, .carousel-arrow:focus-visible { background: #aaa; color: #2f2f2f; }
 .carousel-arrow:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
-.chevron-icon { display: block; width: 17px; height: 30px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; transition: filter .22s ease, opacity .22s ease, transform .22s ease; }
-.carousel-arrow--prev:hover .chevron-icon, .carousel-arrow--prev:focus-visible .chevron-icon { filter: drop-shadow(0 0 4px currentColor); opacity: .75; transform: translateX(-4px) scale(1.08); }
-.carousel-arrow--next:hover .chevron-icon, .carousel-arrow--next:focus-visible .chevron-icon { filter: drop-shadow(0 0 4px currentColor); opacity: .75; transform: translateX(4px) scale(1.08); }
+.chevron-icon { display: block; width: 17px; height: 30px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
 @keyframes carousel-in { from { opacity: .35; transform: translateX(18px); } to { opacity: 1; transform: none; } }
 .service-cards, .gallery-track, .testimonial-row blockquote { animation: carousel-in .48s ease both; }
 
@@ -150,10 +148,6 @@ h2 { color: var(--muted); font-size: clamp(46px, 5.55vw, 80px); font-weight: 500
 .gallery-image { position: relative; height: 304px; overflow: hidden; border-radius: 30px; }
 .gallery-image img { object-fit: cover; transition: transform .5s ease; }
 .gallery-image:hover img { transform: scale(1.05); }
-.gallery-controls { justify-content: space-between; }
-.gallery-controls .slider-dots { justify-content: flex-start; }
-.gallery-controls__arrows { display: flex; align-items: center; gap: 28px; }
-.gallery-controls__arrows .carousel-arrow { position: static; width: 42px; height: 42px; transform: none; }
 .gallery-section:not(.dark-panel) .slider-dots button.is-active { background: #2f2f2f; }
 .outdoor-showcase { margin: 0 16px; padding: 32px 42px 34px; border-radius: 100px; color: white; scroll-margin-top: 90px; }
 .outdoor-showcase__top { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1fr); gap: 76px; align-items: start; }
@@ -170,10 +164,8 @@ h2 { color: var(--muted); font-size: clamp(46px, 5.55vw, 80px); font-weight: 500
 .outdoor-showcase__thumb { position: relative; height: 296px; overflow: hidden; border-radius: 30px; }
 .outdoor-showcase__controls { display: flex; align-items: center; justify-content: space-between; margin-top: 44px; }
 .outdoor-showcase__arrows { display: flex; align-items: center; gap: 28px; }
-.outdoor-showcase__arrows button { display: grid; place-items: center; width: 42px; height: 42px; padding: 0; border: 0; border-radius: 8px; background: transparent; color: white; cursor: pointer; }
-.outdoor-showcase__arrows button:hover, .outdoor-showcase__arrows button:focus-visible { background: transparent; color: white; }
-.outdoor-showcase__arrows button:first-child:hover .chevron-icon, .outdoor-showcase__arrows button:first-child:focus-visible .chevron-icon { filter: drop-shadow(0 0 4px currentColor); opacity: .75; transform: translateX(-4px) scale(1.08); }
-.outdoor-showcase__arrows button:last-child:hover .chevron-icon, .outdoor-showcase__arrows button:last-child:focus-visible .chevron-icon { filter: drop-shadow(0 0 4px currentColor); opacity: .75; transform: translateX(4px) scale(1.08); }
+.outdoor-showcase__arrows button { display: grid; place-items: center; width: 42px; height: 42px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: white; cursor: pointer; transition: background .22s ease, color .22s ease; }
+.outdoor-showcase__arrows button:hover, .outdoor-showcase__arrows button:focus-visible { background: #aaa; color: #2f2f2f; }
 .outdoor-showcase__arrows button:focus-visible { outline: 2px solid white; outline-offset: 3px; }
 .new-build-showcase { padding: 66px var(--gutter) 38px; overflow: hidden; scroll-margin-top: 90px; }
 .new-build-showcase__top { display: grid; grid-template-columns: minmax(0, .96fr) minmax(0, 1fr); gap: 84px; align-items: start; }
@@ -192,10 +184,8 @@ h2 { color: var(--muted); font-size: clamp(46px, 5.55vw, 80px); font-weight: 500
 .new-build-showcase .slider-dots { justify-content: flex-start; }
 .new-build-showcase .slider-dots button.is-active { background: #242424; }
 .new-build-showcase__arrows { display: flex; align-items: center; gap: 28px; }
-.new-build-showcase__arrows button { display: grid; place-items: center; width: 42px; height: 42px; padding: 0; border: 0; border-radius: 8px; background: transparent; color: #242424; cursor: pointer; }
-.new-build-showcase__arrows button:hover, .new-build-showcase__arrows button:focus-visible { background: transparent; }
-.new-build-showcase__arrows button:first-child:hover .chevron-icon, .new-build-showcase__arrows button:first-child:focus-visible .chevron-icon { filter: drop-shadow(0 0 4px currentColor); opacity: .65; transform: translateX(-4px) scale(1.08); }
-.new-build-showcase__arrows button:last-child:hover .chevron-icon, .new-build-showcase__arrows button:last-child:focus-visible .chevron-icon { filter: drop-shadow(0 0 4px currentColor); opacity: .65; transform: translateX(4px) scale(1.08); }
+.new-build-showcase__arrows button { display: grid; place-items: center; width: 42px; height: 42px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: #242424; cursor: pointer; transition: background .22s ease; }
+.new-build-showcase__arrows button:hover, .new-build-showcase__arrows button:focus-visible { background: #b5b5b5; }
 .new-build-showcase__arrows button:focus-visible { outline: 2px solid #242424; outline-offset: 3px; }
 .values-section { padding: 40px var(--gutter) 50px; text-align: center; }
 .values-section h2 { margin-bottom: 0; }
@@ -262,10 +252,6 @@ h2 { color: var(--muted); font-size: clamp(46px, 5.55vw, 80px); font-weight: 500
 .service-copy li { margin: 2px 0; padding-left: 4px; font-weight: 300; }
 .service-copy li::marker { font-size: .8em; }
 .service-block--dark h2, .service-block--dark .service-copy { color: white; }
-.services-page #renovations .title-rule { width: min(250px, 72%); }
-.project-showcase { overflow: hidden; background: var(--panel); border-radius: 100px; }
-.project-showcase #project-management, .project-showcase .gallery-section.dark-panel { border-radius: 0; }
-.project-showcase > .reveal + .reveal { margin-top: -1px; }
 .service-image { position: relative; height: 640px; border-radius: 70px; overflow: hidden; }
 .service-image img { object-fit: cover; }
 .text-link { display: inline-flex; align-items: center; gap: 10px; margin-top: 12px; font-family: var(--font-heading); font-weight: 500; text-transform: uppercase; }
@@ -340,8 +326,6 @@ h2 { color: var(--muted); font-size: clamp(46px, 5.55vw, 80px); font-weight: 500
   .carousel-arrow--next { right: -16px; }
   .chevron-icon { width: 14px; height: 26px; }
   .gallery-section.dark-panel, .dark-panel, .service-block--dark { border-radius: 55px; }
-  .project-showcase { border-radius: 55px; }
-  .project-showcase #project-management, .project-showcase .gallery-section.dark-panel { border-radius: 0; }
   .gallery-track { display: flex; width: 100%; overflow: hidden; }
   .gallery-image { min-width: calc(100vw - 44px); }
   .gallery-image:not(:first-child) { display: none; }
