@@ -21,8 +21,8 @@ export function AboutPreview() {
   );
 }
 
-export function ServiceBlock({ id, title, image, imageAlt = "", imagePosition = "center", dark = false, imageFirst = false, children, bullets }: { id: string; title: string; image: string; imageAlt?: string; imagePosition?: string; dark?: boolean; imageFirst?: boolean; children: React.ReactNode; bullets?: string[] }) {
+export function ServiceBlock({ id, title, image, imageAlt = "", imagePosition = "center", dark = false, imageFirst = false, showTitleRule = true, children, bullets }: { id: string; title: string; image: string; imageAlt?: string; imagePosition?: string; dark?: boolean; imageFirst?: boolean; showTitleRule?: boolean; children: React.ReactNode; bullets?: string[] }) {
   return (
-    <Reveal><section id={id} className={`service-block ${dark ? "service-block--dark dark-panel" : ""} ${imageFirst ? "service-block--image-first" : ""}`}><div className="service-copy"><h2>{title}</h2><div className={`title-rule ${dark ? "" : "title-rule--dark"}`} />{children}{bullets && <><strong>This service can include:</strong><ul>{bullets.map((item) => <li key={item}>{item}</li>)}</ul></>}</div><div className="service-image"><Image src={image} alt={imageAlt} fill quality={100} sizes="(max-width: 780px) calc(100vw - 44px), 50vw" style={{ objectPosition: imagePosition }} /></div></section></Reveal>
+    <Reveal><section id={id} className={`service-block ${dark ? "service-block--dark dark-panel" : ""} ${imageFirst ? "service-block--image-first" : ""}`}><div className="service-copy"><h2>{title}</h2>{showTitleRule && <div className={`title-rule ${dark ? "" : "title-rule--dark"}`} />}{children}{bullets && <><strong>This service can include:</strong><ul>{bullets.map((item) => <li key={item}>{item}</li>)}</ul></>}</div><div className="service-image"><Image src={image} alt={imageAlt} fill quality={100} sizes="(max-width: 780px) calc(100vw - 44px), 50vw" style={{ objectPosition: imagePosition }} /></div></section></Reveal>
   );
 }
