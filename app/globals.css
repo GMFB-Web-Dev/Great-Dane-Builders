@@ -134,8 +134,9 @@ h2 { color: var(--muted); font-size: clamp(46px, 5.55vw, 80px); font-weight: 500
 .service-cards, .gallery-track, .testimonial-row blockquote { animation: carousel-in .48s ease both; }
 
 .credentials { min-height: 383px; padding: 33px var(--gutter); text-align: center; display: flex; flex-direction: column; align-items: center; }
-.credentials h2 { margin-bottom: 4px; }
-.credentials .title-rule { margin-bottom: 16px; }
+.credentials-title { display: flex; width: fit-content; max-width: 100%; flex-direction: column; align-items: flex-start; }
+.credentials-title h2 { margin-bottom: 4px; }
+.credentials-title .title-rule { margin-bottom: 16px; }
 .credentials p { max-width: 1040px; margin-bottom: 12px; }
 .credentials img { width: 290px; height: 128px; object-fit: contain; }
 .gallery-section { padding: 33px var(--gutter); overflow: hidden; }

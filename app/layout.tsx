@@ -24,6 +24,11 @@ export const metadata: Metadata = {
   description:
     "Auckland residential builders specialising in renovations, additions, character-home restoration, outdoor living and project management.",
   metadataBase: new URL("https://www.gdb.co.nz"),
+  icons: {
+    icon: [{ url: "/assets/gdb-logo.png", type: "image/png" }],
+    shortcut: "/assets/gdb-logo.png",
+    apple: "/assets/gdb-logo.png",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

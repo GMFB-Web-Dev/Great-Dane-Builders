@@ -25,7 +25,7 @@ export function ContactMap({ wide = false }: { wide?: boolean }) {
     <div className={wide ? "contact-map-wide" : "map-card"}>
       <iframe
         src={contact.mapEmbed}
-        title={`Google Map showing ${contact.address}`}
+        title={`Google Map showing ${contact.mapLabel}`}
         loading="lazy"
         allowFullScreen
         referrerPolicy="no-referrer-when-downgrade"

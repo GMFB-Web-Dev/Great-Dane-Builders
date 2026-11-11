@@ -5,8 +5,9 @@ export const contact = {
   secondaryEmail: "pat@gdb.co.nz",
   facebook: "https://www.facebook.com/p/Great-Dane-Builders-LTD-61576536329481/",
   instagram: "https://www.instagram.com/great_dane_builders/",
-  map: "https://share.google/Icb3CTweQRAgWf2C7",
-  mapEmbed: "https://www.google.com/maps?q=26%20Hinemoa%20Street%2C%20Birkenhead%2C%20Auckland%200626&output=embed",
+  map: "https://www.google.com/maps/search/?api=1&query=Auckland%2C%20New%20Zealand",
+  mapEmbed: "https://www.google.com/maps?q=Auckland%2C%20New%20Zealand&output=embed",
+  mapLabel: "Auckland, New Zealand",
   address: "26 Hinemoa Street, Birkenhead, Auckland 0626",
 };
 

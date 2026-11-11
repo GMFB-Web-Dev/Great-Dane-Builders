@@ -11,7 +11,7 @@ export function Values({ dark = false }: { dark?: boolean }) {
 
 export function Credentials() {
   return (
-    <Reveal><section className="credentials"><h2>Building With Confidence</h2><div className="title-rule title-rule--dark" /><p>Great Dane Builders brings LBP credentials, full insurance cover and a 10-year guarantee to residential building projects. With a hands-on approach, clear communication and a commitment to quality workmanship, we take care of the details from start to finish, giving you confidence that your home is in capable hands throughout your renovation or new build.</p><Image src="/assets/lbp-logo.png" alt="Licensed Building Practitioners" width={382} height={150} unoptimized /></section></Reveal>
+    <Reveal><section className="credentials"><div className="credentials-title"><h2>Building With Confidence</h2><div className="title-rule title-rule--dark" /></div><p>Great Dane Builders brings LBP credentials, full insurance cover and a 10-year guarantee to residential building projects. With a hands-on approach, clear communication and a commitment to quality workmanship, we take care of the details from start to finish, giving you confidence that your home is in capable hands throughout your renovation or new build.</p><Image src="/assets/lbp-logo.png" alt="Licensed Building Practitioners" width={382} height={150} unoptimized /></section></Reveal>
   );
 }
 
