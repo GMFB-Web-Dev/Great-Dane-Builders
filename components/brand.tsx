@@ -17,9 +17,10 @@ export function VanArtwork({ variant = "light" }: { variant?: "light" | "dark" }
 }
 
 export function VanLink({ href, children, variant = "light", external = false }: { href: string; children: React.ReactNode; variant?: "light" | "dark"; external?: boolean }) {
+  const hasCompactLabel = typeof children === "string" && children.trim().length > 8;
   const content = <>
     <VanArtwork variant={variant} />
-    <span>{children}</span>
+    <span className={`van-link__label${hasCompactLabel ? " van-link__label--compact" : ""}`}>{children}</span>
   </>;
   if (external) return <a className={`van-link van-link--${variant}`} href={href} target="_blank" rel="noreferrer">{content}</a>;
   return <Link className={`van-link van-link--${variant}`} href={href}>{content}</Link>;

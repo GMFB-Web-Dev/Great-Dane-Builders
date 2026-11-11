@@ -56,12 +56,13 @@ h2 { color: var(--muted); font-size: clamp(46px, 5.55vw, 80px); font-weight: 500
 /* Shared brand artwork */
 .brand-logo { display: block; height: 46px; width: 188px; overflow: hidden; position: relative; flex: 0 0 auto; }
 .brand-logo img { position: absolute; height: 132px; width: 188px; max-width: none; left: 0; top: -35px; object-fit: fill; }
-.van-link { --van-fill: #d5d5d5; display: inline-block; height: 54px; width: 156px; position: relative; color: white; text-transform: uppercase; font-size: 14px; font-weight: 500; letter-spacing: .02em; }
+.van-link { --van-fill: #d5d5d5; display: inline-block; height: 54px; width: 156px; position: relative; color: white; text-transform: uppercase; font-size: 13px; font-weight: 500; letter-spacing: .02em; }
 .van-link img { position: absolute; inset: 0; height: 100%; width: 100%; object-fit: contain; transition: opacity .22s ease; }
 .van-link__fill { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; background: var(--van-fill, #d5d5d5); opacity: 0; transition: opacity .22s ease; -webkit-mask: url("/assets/van-hover.png") center / contain no-repeat; mask: url("/assets/van-hover.png") center / contain no-repeat; }
 .van-link__outline { z-index: 1; opacity: 1; }
 .van-link__outline--light { filter: brightness(0) invert(1); }
-.van-link span { position: absolute; z-index: 2; inset: 0 auto auto 0; display: grid; place-items: center; width: 69%; height: 72%; white-space: nowrap; transition: color .22s ease; }
+.van-link__label { position: absolute; z-index: 2; top: 0; left: 5px; display: grid; place-items: center; width: calc(69% - 5px); height: 72%; padding: 0 4px; white-space: nowrap; transition: color .22s ease; }
+.van-link__label--compact { font-size: 12px; letter-spacing: 0; }
 .van-link--dark { --van-fill: var(--muted); color: #151515; }
 .van-link:hover, .van-link:focus-visible { color: #2f2f2f; }
 .van-link--dark:hover, .van-link--dark:focus-visible { color: white; }
@@ -259,7 +260,7 @@ h2 { color: var(--muted); font-size: clamp(46px, 5.55vw, 80px); font-weight: 500
   .main-nav { gap: 18px; font-size: 16px; }
   .header-phone { width: 130px; flex-basis: 130px; }
   .header-phone .van-link { width: 130px; }
-  .header-phone .van-link span { font-size: 11px; }
+  .header-phone .van-link__label { font-size: 11px; padding-inline: 3px; }
   .split-feature, .service-block { gap: 42px; }
   .values-grid { gap: 18px; }
 }
@@ -285,7 +286,9 @@ h2 { color: var(--muted); font-size: clamp(46px, 5.55vw, 80px); font-weight: 500
   .hero h1 { font-size: 52px; line-height: 1.12; }
   .hero p { font-size: 16px; }
   .hero-actions { gap: 8px; }
-  .van-link { width: 140px; }
+  .van-link { width: min(140px, calc((100vw - 52px) / 2)); font-size: 12px; }
+  .van-link__label { left: 4px; width: calc(69% - 4px); padding-inline: 3px; }
+  .van-link__label--compact { font-size: 11px; }
   .split-feature, .service-block { grid-template-columns: 1fr; gap: 28px; padding-block: 48px; }
   .split-feature { min-height: 0; }
   .feature-placeholder, .service-image { height: 440px; border-radius: 42px; }
