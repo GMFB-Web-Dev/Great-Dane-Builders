@@ -227,8 +227,9 @@ h2 { color: var(--muted); font-size: clamp(46px, 5.55vw, 80px); font-weight: 500
 .service-block--image-first .service-image { order: 1; }
 .service-copy p { font-weight: 300; }
 .service-copy > strong { display: block; margin-top: 20px; }
-.service-copy ul { padding-left: 22px; margin-top: 8px; }
-.service-copy li { margin: 2px 0; font-weight: 300; }
+.service-copy ul { margin-top: 8px; padding-left: 26px; list-style: disc outside; }
+.service-copy li { margin: 2px 0; padding-left: 4px; font-weight: 300; }
+.service-copy li::marker { font-size: .8em; }
 .service-block--dark h2, .service-block--dark .service-copy { color: white; }
 .service-image { position: relative; height: 640px; border-radius: 70px; overflow: hidden; }
 .service-image img { object-fit: cover; }
