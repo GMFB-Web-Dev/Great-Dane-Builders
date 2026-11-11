@@ -156,8 +156,9 @@ h2 { color: var(--muted); font-size: clamp(46px, 5.55vw, 80px); font-weight: 500
 .outdoor-showcase__copy h2 { color: white; margin-bottom: 24px; }
 .outdoor-showcase__copy p { font-weight: 300; }
 .outdoor-showcase__copy > strong { display: block; margin: 22px 0 4px; }
-.outdoor-showcase__copy ul { margin: 0 0 24px; padding-left: 22px; }
-.outdoor-showcase__copy li { font-weight: 300; }
+.outdoor-showcase__copy ul { margin: 0 0 24px; padding-left: 26px; list-style: disc outside; }
+.outdoor-showcase__copy li { padding-left: 4px; font-weight: 300; }
+.outdoor-showcase__copy li::marker { color: white; font-size: .8em; }
 .outdoor-showcase__gallery { display: grid; grid-template-columns: repeat(4, minmax(230px, 1fr)); gap: 26px; margin-top: 58px; overflow: hidden; }
 .outdoor-showcase__thumb { position: relative; height: 296px; overflow: hidden; border-radius: 30px; }
 .outdoor-showcase__controls { display: flex; align-items: center; justify-content: space-between; margin-top: 44px; }
