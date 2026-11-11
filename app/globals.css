@@ -56,14 +56,15 @@ h2 { color: var(--muted); font-size: clamp(46px, 5.55vw, 80px); font-weight: 500
 /* Shared brand artwork */
 .brand-logo { display: block; height: 46px; width: 188px; overflow: hidden; position: relative; flex: 0 0 auto; }
 .brand-logo img { position: absolute; height: 132px; width: 188px; max-width: none; left: 0; top: -35px; object-fit: fill; }
-.van-link { display: inline-block; height: 54px; width: 156px; position: relative; color: white; text-transform: uppercase; font-size: 14px; font-weight: 500; letter-spacing: .02em; }
+.van-link { --van-fill: #d5d5d5; display: inline-block; height: 54px; width: 156px; position: relative; color: white; text-transform: uppercase; font-size: 14px; font-weight: 500; letter-spacing: .02em; }
 .van-link img { position: absolute; inset: 0; height: 100%; width: 100%; object-fit: contain; transition: opacity .22s ease; }
-.van-link__fill { z-index: 0; opacity: 0; }
+.van-link__fill { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; background: var(--van-fill, #d5d5d5); opacity: 0; transition: opacity .22s ease; -webkit-mask: url("/assets/van-hover.png") center / contain no-repeat; mask: url("/assets/van-hover.png") center / contain no-repeat; }
 .van-link__outline { z-index: 1; opacity: 1; }
 .van-link__outline--light { filter: brightness(0) invert(1); }
 .van-link span { position: absolute; z-index: 2; inset: 0 auto auto 0; display: grid; place-items: center; width: 69%; height: 72%; white-space: nowrap; transition: color .22s ease; }
-.van-link--dark { color: #151515; }
+.van-link--dark { --van-fill: var(--muted); color: #151515; }
 .van-link:hover, .van-link:focus-visible { color: #2f2f2f; }
+.van-link--dark:hover, .van-link--dark:focus-visible { color: white; }
 .van-link:hover .van-link__fill, .van-link:focus-visible .van-link__fill { opacity: 1; }
 .van-link:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; border-radius: 8px; }
 
