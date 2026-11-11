@@ -17,6 +17,9 @@ const outdoorLivingImages = [
   { src: "/assets/outdoor-villa.jpg", alt: "Villa exterior with new retaining work" },
 ] as const;
 
+const outdoorLivingMainImage = outdoorLivingImages[0];
+const outdoorLivingGalleryImages = outdoorLivingImages.slice(1);
+
 function Arrows({ onPrev, onNext, label }: { onPrev: () => void; onNext: () => void; label: string }) {
   return <><button className="carousel-arrow carousel-arrow--prev" type="button" onClick={onPrev} aria-label={`Previous ${label}`}><ChevronIcon direction="left" /></button><button className="carousel-arrow carousel-arrow--next" type="button" onClick={onNext} aria-label={`Next ${label}`}><ChevronIcon direction="right" /></button></>;
 }
@@ -64,16 +67,15 @@ export function ServicesCarousel() {
 }
 
 export function OutdoorLivingShowcase() {
-  const { index, setIndex, interactionProps } = useAutoCarousel(outdoorLivingImages.length, 5600);
-  const ordered = useMemo(() => [...outdoorLivingImages.slice(index), ...outdoorLivingImages.slice(0, index)], [index]);
-  const move = (amount: number) => setIndex((value) => (value + amount + outdoorLivingImages.length) % outdoorLivingImages.length);
-  const mainImage = outdoorLivingImages[index];
+  const { index, setIndex, interactionProps } = useAutoCarousel(outdoorLivingGalleryImages.length, 5600);
+  const ordered = useMemo(() => [...outdoorLivingGalleryImages.slice(index), ...outdoorLivingGalleryImages.slice(0, index)], [index]);
+  const move = (amount: number) => setIndex((value) => (value + amount + outdoorLivingGalleryImages.length) % outdoorLivingGalleryImages.length);
 
   return (
     <section id="outdoor-living" className="dark-panel outdoor-showcase" {...interactionProps}>
       <div className="outdoor-showcase__top">
-        <div className="outdoor-showcase__main" key={mainImage.src}>
-          <Image src={mainImage.src} alt={mainImage.alt} fill unoptimized sizes="(max-width: 780px) calc(100vw - 88px), 44vw" />
+        <div className="outdoor-showcase__main">
+          <Image src={outdoorLivingMainImage.src} alt={outdoorLivingMainImage.alt} fill unoptimized sizes="(max-width: 780px) calc(100vw - 88px), 44vw" />
         </div>
         <div className="outdoor-showcase__copy">
           <h2>Outdoor Living</h2>
@@ -84,10 +86,10 @@ export function OutdoorLivingShowcase() {
         </div>
       </div>
       <div className="outdoor-showcase__gallery" key={index}>
-        {ordered.slice(1, 5).map((item) => <div className="outdoor-showcase__thumb" key={item.src}><Image src={item.src} alt={item.alt} fill unoptimized sizes="(max-width: 780px) calc(100vw - 88px), 23vw" /></div>)}
+        {ordered.slice(0, 4).map((item) => <div className="outdoor-showcase__thumb" key={item.src}><Image src={item.src} alt={item.alt} fill unoptimized sizes="(max-width: 780px) calc(100vw - 88px), 23vw" /></div>)}
       </div>
       <div className="outdoor-showcase__controls">
-        <div className="slider-dots">{outdoorLivingImages.map((_, dot) => <button key={dot} type="button" aria-label={`Show outdoor project ${dot + 1}`} className={dot === index ? "is-active" : ""} onClick={() => setIndex(dot)} />)}</div>
+        <div className="slider-dots">{outdoorLivingGalleryImages.map((_, dot) => <button key={dot} type="button" aria-label={`Show outdoor project ${dot + 1}`} className={dot === index ? "is-active" : ""} onClick={() => setIndex(dot)} />)}</div>
         <div className="outdoor-showcase__arrows">
           <button type="button" onClick={() => move(-1)} aria-label="Previous outdoor project"><ChevronIcon direction="left" /></button>
           <button type="button" onClick={() => move(1)} aria-label="Next outdoor project"><ChevronIcon direction="right" /></button>
