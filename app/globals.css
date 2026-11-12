@@ -252,6 +252,10 @@ h2 { color: var(--muted); font-size: clamp(46px, 5.55vw, 80px); font-weight: 500
 .service-copy li { margin: 2px 0; padding-left: 4px; font-weight: 300; }
 .service-copy li::marker { font-size: .8em; }
 .service-block--dark h2, .service-block--dark .service-copy { color: white; }
+.project-management-showcase { overflow: hidden; background: var(--panel); border-radius: 100px; }
+.project-management-showcase #project-management,
+.project-management-showcase .gallery-section.dark-panel { border-radius: 0; }
+.project-management-showcase > .reveal + .reveal { margin-top: -1px; }
 .service-image { position: relative; height: 640px; border-radius: 70px; overflow: hidden; }
 .service-image img { object-fit: cover; }
 .text-link { display: inline-flex; align-items: center; gap: 10px; margin-top: 12px; font-family: var(--font-heading); font-weight: 500; text-transform: uppercase; }
@@ -326,6 +330,9 @@ h2 { color: var(--muted); font-size: clamp(46px, 5.55vw, 80px); font-weight: 500
   .carousel-arrow--next { right: -16px; }
   .chevron-icon { width: 14px; height: 26px; }
   .gallery-section.dark-panel, .dark-panel, .service-block--dark { border-radius: 55px; }
+  .project-management-showcase { border-radius: 55px; }
+  .project-management-showcase #project-management,
+  .project-management-showcase .gallery-section.dark-panel { border-radius: 0; }
   .gallery-track { display: flex; width: 100%; overflow: hidden; }
   .gallery-image { min-width: calc(100vw - 44px); }
   .gallery-image:not(:first-child) { display: none; }
