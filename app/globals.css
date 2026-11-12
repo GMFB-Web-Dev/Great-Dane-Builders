@@ -144,6 +144,7 @@ h2 { color: var(--muted); font-size: clamp(46px, 5.55vw, 80px); font-weight: 500
 .gallery-section { padding: 33px var(--gutter); overflow: hidden; }
 .gallery-section.dark-panel { border-radius: 100px; }
 .gallery-section h2:empty { display: none; }
+.gallery-viewport { overflow: hidden; border-radius: 30px; }
 .gallery-track { display: grid; grid-template-columns: repeat(4, minmax(300px, 1fr)); gap: 26px; width: calc(100% + 280px); }
 .gallery-image { position: relative; height: 304px; overflow: hidden; border-radius: 30px; }
 .gallery-image img { object-fit: cover; transition: transform .5s ease; }
