@@ -141,6 +141,7 @@ h2 { color: var(--muted); font-size: clamp(46px, 5.55vw, 80px); font-weight: 500
 .gallery-section { padding: 33px var(--gutter); overflow: hidden; }
 .gallery-section.dark-panel { border-radius: 100px; }
 .gallery-section h2:empty { display: none; }
+.gallery-footer-arrows { display: none; }
 .gallery-viewport { overflow: hidden; border-radius: 30px; }
 .gallery-track { display: grid; grid-template-columns: repeat(4, minmax(300px, 1fr)); gap: 26px; width: calc(100% + 280px); }
 .gallery-image { position: relative; height: 304px; overflow: hidden; border-radius: 30px; }
@@ -365,7 +366,7 @@ h2 { color: var(--muted); font-size: clamp(46px, 5.55vw, 80px); font-weight: 500
   .new-build-showcase__copy { padding-top: 0; }
   .new-build-showcase__copy .title-rule { width: min(260px, 72%); }
   .new-build-showcase__main { min-height: 440px; border-radius: 42px; }
-  .new-build-showcase__gallery { display: flex; width: 100%; margin-top: 28px; }
+  .new-build-showcase__gallery { display: flex; width: 100%; margin-top: 20px; }
   .new-build-showcase__thumb { min-width: 100%; height: 320px; }
   .new-build-showcase__thumb:not(:first-child) { display: none; }
   .new-build-showcase__controls { margin-top: 26px; }
@@ -390,9 +391,14 @@ h2 { color: var(--muted); font-size: clamp(46px, 5.55vw, 80px); font-weight: 500
   .services-page .renovations-showcase .service-block,
   .services-page .project-management-showcase .service-block { padding-bottom: 0; }
   .services-page .renovations-showcase .gallery-section,
-  .services-page .project-management-showcase .gallery-section { padding-top: 28px; padding-bottom: 30px; }
+  .services-page .project-management-showcase .gallery-section { padding-top: 20px; padding-bottom: 28px; }
   .services-page .renovations-showcase .slider-controls,
   .services-page .project-management-showcase .slider-controls { margin-top: 26px; }
+  .gallery-section--mobile-controls-below .gallery-image { height: 320px; }
+  .gallery-section--mobile-controls-below .gallery-stage > .carousel-arrow { display: none; }
+  .gallery-section--mobile-controls-below .slider-controls { justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  .gallery-section--mobile-controls-below .gallery-footer-arrows { display: flex; gap: 28px; margin-left: auto; }
+  .gallery-section--mobile-controls-below .gallery-footer-arrows .carousel-arrow { position: static; width: 42px; height: 42px; transform: none; }
   .footer-top { grid-template-columns: 1fr; justify-items: center; gap: 22px; }
   .footer-top nav { flex-wrap: wrap; gap: 18px 24px; font-size: 16px; }
   .footer-bottom { font-size: 13px; }

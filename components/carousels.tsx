@@ -171,15 +171,18 @@ export function NewBuildsShowcase() {
   );
 }
 
-export function Gallery({ images = galleryImages, title = "Our Work", dark = true }: { images?: typeof galleryImages; title?: string; dark?: boolean }) {
+export function Gallery({ images = galleryImages, title = "Our Work", dark = true, mobileControlsBelow = false }: { images?: typeof galleryImages; title?: string; dark?: boolean; mobileControlsBelow?: boolean }) {
   const { index, setIndex, interactionProps } = useAutoCarousel(images.length);
   const ordered = useMemo(() => [...images.slice(index), ...images.slice(0, index)], [images, index]);
   const move = (amount: number) => setIndex((value) => (value + amount + images.length) % images.length);
   return (
-    <section className={`${dark ? "dark-panel" : ""} gallery-section`} {...interactionProps}>
+    <section className={`${dark ? "dark-panel" : ""} gallery-section${mobileControlsBelow ? " gallery-section--mobile-controls-below" : ""}`} {...interactionProps}>
       <h2>{title}</h2>
       <div className="carousel-stage gallery-stage"><div className="gallery-viewport"><div className="gallery-track" key={index}>{ordered.slice(0, 4).map((item, i) => <div className="gallery-image" key={`${item.src.src}-${i}`}><Image src={item.src} alt={item.alt} fill quality={85} placeholder="blur" sizes="(max-width: 780px) calc(100vw - 44px), (max-width: 1000px) 300px, 28vw" /></div>)}</div></div><Arrows onPrev={() => move(-1)} onNext={() => move(1)} label="gallery image" /></div>
-      <div className="slider-controls"><CarouselDots labels={images.map((_, dot) => `Show image ${dot + 1}`)} index={index} onSelect={setIndex} /></div>
+      <div className="slider-controls">
+        <CarouselDots labels={images.map((_, dot) => `Show image ${dot + 1}`)} index={index} onSelect={setIndex} />
+        {mobileControlsBelow && <div className="gallery-footer-arrows"><Arrows onPrev={() => move(-1)} onNext={() => move(1)} label="gallery image" /></div>}
+      </div>
     </section>
   );
 }
