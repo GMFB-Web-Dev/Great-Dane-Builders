@@ -173,7 +173,7 @@ export function Testimonials() {
       <h2>Trusted By Our Clients</h2>
       <div className="testimonial-row">
         <button className="carousel-arrow testimonial-arrow" type="button" onClick={() => move(-1)} aria-label="Previous testimonial"><ChevronIcon direction="left" /></button>
-        <blockquote key={index}><p>{current.quote}</p><cite>{current.name}</cite></blockquote>
+        <blockquote key={index}><p>{current.quote}</p><cite>Toni Beattie</cite></blockquote>
         <button className="carousel-arrow testimonial-arrow" type="button" onClick={() => move(1)} aria-label="Next testimonial"><ChevronIcon direction="right" /></button>
       </div>
       <CarouselDots labels={testimonials.map((_, dot) => `Show testimonial ${dot + 1}`)} index={index} onSelect={setIndex} />
