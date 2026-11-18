@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState, type FocusEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type FocusEvent, type PointerEvent } from "react";
 import { galleryImages, googleReviewsUrl, services, testimonials } from "@/lib/site-data";
 import { ChevronIcon, InlineArrowIcon } from "./icons";
 import { photos } from "@/lib/image-assets";
@@ -45,10 +45,11 @@ const CAROUSEL_INTERVAL_MS = 5000;
 function useAutoCarousel(length: number) {
   const carouselRef = useRef<HTMLElement>(null);
   const [index, setIndex] = useState(0);
+  const [hovered, setHovered] = useState(false);
   const [keyboardFocused, setKeyboardFocused] = useState(false);
 
   useEffect(() => {
-    if (!carouselRef.current || keyboardFocused || length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!carouselRef.current || hovered || keyboardFocused || length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const carousels = Array.from(document.querySelectorAll("[data-autoplay-carousel]"));
     const position = Math.max(0, carousels.indexOf(carouselRef.current));
@@ -67,7 +68,7 @@ function useAutoCarousel(length: number) {
 
     scheduleNext();
     return () => window.clearTimeout(timer);
-  }, [length, keyboardFocused]);
+  }, [length, hovered, keyboardFocused]);
 
   return {
     index,
@@ -75,6 +76,10 @@ function useAutoCarousel(length: number) {
     interactionProps: {
       ref: carouselRef,
       "data-autoplay-carousel": true,
+      onPointerEnter: (event: PointerEvent<HTMLElement>) => {
+        if (event.pointerType === "mouse") setHovered(true);
+      },
+      onPointerLeave: () => setHovered(false),
       onFocusCapture: (event: FocusEvent<HTMLElement>) => setKeyboardFocused(event.target.matches(":focus-visible")),
       onBlurCapture: () => setKeyboardFocused(false),
     },
