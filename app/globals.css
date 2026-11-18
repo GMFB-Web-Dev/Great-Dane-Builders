@@ -308,7 +308,7 @@ h2 { color: var(--muted); font-size: clamp(46px, 5.55vw, 80px); font-weight: 500
   .header-inner { padding: 0 18px; }
   .menu-toggle { display: block; order: 3; }
   .header-phone { display: none; }
-  .main-nav { position: fixed; inset: 72px 0 auto; height: auto; padding: 26px; flex-direction: column; gap: 0; background: rgba(47,47,47,.98); font-size: 18px; transform: translateY(-130%); transition: transform .3s ease; }
+  .main-nav { position: fixed; inset: 72px 0 auto; height: auto; padding: 26px; flex-direction: column; gap: 0; background: rgba(47,47,47,.98); font-size: 22px; transform: translateY(-130%); transition: transform .3s ease; }
   .site-header--open .main-nav { transform: none; }
   .main-nav > a { min-height: 48px; justify-content: center; }
   .main-nav > a::after { bottom: 7px; }
