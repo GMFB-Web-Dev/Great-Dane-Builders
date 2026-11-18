@@ -4,7 +4,9 @@ import Link from "next/link";
 export function Logo({ className = "" }: { className?: string }) {
   return (
     <Link href="/" aria-label="Great Dane Builders home" className={`brand-logo ${className}`}>
-      <Image src="/assets/gdb-logo.png" alt="Great Dane Builders" width={500} height={500} loading="eager" unoptimized />
+      <svg viewBox="0 120 500 190" role="img" aria-label="Great Dane Builders" className="brand-logo__artwork">
+        <image href="/assets/gdb-logo.png" width="500" height="500" />
+      </svg>
     </Link>
   );
 }
