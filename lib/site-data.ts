@@ -48,12 +48,12 @@ export const values = [
 
 export const googleReviewsUrl = "https://www.google.com/maps/place/Great+Dane+Builders+LTD/@-36.52411,173.5831902,8z/data=!4m8!3m7!1s0x20e50df38bdea9e1:0x8b16677029fb1022!8m2!3d-36.5313753!4d174.9024663!9m1!1b1!16s%2Fg%2F11ygpd3980";
 
-// Short excerpts from the six Google reviews verified on 18 November 2026.
+// Desktop uses the original full reviews; mobile uses the verified short excerpts.
 export const testimonials = [
-  { quote: "Our builders for over 6 years and multiple projects. Couldn’t rate them more highly.", name: "Toni Beattie" },
-  { quote: "Dane and his team have been amazing. Transformed my house into a work of art…", name: "Natalie McMillin" },
-  { quote: "Dane was amazing at project managing our kitchen, bathroom and exterior upgrade.", name: "Janel Reid" },
-  { quote: "Great communication throughout the process. Highly recommend for all your building needs. Would use again.", name: "Nick Cory" },
-  { quote: "They're super professional, easy going, and gave me peace of mind. I can't recommend these guys enough.", name: "Katrina Wass" },
-  { quote: "…top workmanship, great guy with a eye to detail & great ideas with great chat aswell Highly recommend!!", name: "Marc Woolley" },
+  { quote: "Our builders for over 6 years and multiple projects. Couldn’t rate them more highly.", name: "Toni Beattie", fullQuote: "Our builders for over 6 years and multiple projects. Couldn’t rate them more highly." },
+  { quote: "Dane and his team have been amazing. Transformed my house into a work of art…", name: "Natalie McMillin", fullQuote: "Dane and his team have been amazing. Transformed my house into a work of art and allowed me to have my input and discuss things to come up with solutions. My job was not small and my house was architecturally designed in its day and he was very on board with keeping things in line with the original design. Also very clean and tidy. Would highly recommend!" },
+  { quote: "Dane was amazing at project managing our kitchen, bathroom and exterior upgrade.", name: "Janel Reid", fullQuote: "After maxing out our skills during our renovation, we called in Dane and Alex to take the reins and complete it properly! Dane was amazing at project managing our kitchen, bathroom and exterior upgrade. Him and Alex set the bar high and everything else fell into place. They were the tidiest tradies we’ve had around and the communication was top notch. Wouldn’t hesitate to use Dane and his team for any future work." },
+  { quote: "Great communication throughout the process. Highly recommend for all your building needs. Would use again.", name: "Nick Cory", fullQuote: "I used Dan and his team for some Reno on my house. Everything went TK plan and stayed within the budget. Great communication throughout the process. Highly recommend for all your building needs. Would use again." },
+  { quote: "They're super professional, easy going, and gave me peace of mind. I can't recommend these guys enough.", name: "Katrina Wass", fullQuote: "Not only did the owner, Dane, make everything easy for me to understand right from the beginning, he also made sure to keep great comms with me the whole way through. I always felt as though Dane and his lads had things under control. Thanks GDB for your awesome work ethic and amazing skills. They’re super professional, easy going, and gave me peace of mind. I can’t recommend these guys enough." },
+  { quote: "…top workmanship, great guy with a eye to detail & great ideas with great chat aswell Highly recommend!!", name: "Marc Woolley", fullQuote: "Phoned Dane late in the afternoon for a urgent job, him and his team turned up early the next morning and worked through the rain, hail & mud to complete the job at hand, top workmanship, great guy with a eye to detail & great ideas with great chat aswell. Highly recommend!! Cheers guys" },
 ];
