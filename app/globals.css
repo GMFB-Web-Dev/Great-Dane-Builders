@@ -205,7 +205,7 @@ h2 { color: var(--muted); font-size: clamp(46px, 5.55vw, 80px); font-weight: 500
 .testimonial-row blockquote p { font-weight: 300; font-size: clamp(14px, 1.25vw, 18px); white-space: pre-line; }
 .testimonial-row cite { display: block; font-style: normal; font-weight: 600; margin-top: 28px; }
 .testimonial-section > .slider-dots { margin-top: 36px; }
-.testimonial-source { align-self: center; margin-top: 20px; font-size: 14px; text-align: center; text-decoration: underline; text-underline-offset: 4px; }
+.testimonial-source { display: none; align-self: center; margin-top: 20px; font-size: 14px; text-align: center; text-decoration: underline; text-underline-offset: 4px; }
 .testimonial-source:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
 
 /* Contact */
@@ -374,6 +374,7 @@ h2 { color: var(--muted); font-size: clamp(46px, 5.55vw, 80px); font-weight: 500
   .values-grid p { max-width: 420px; margin-inline: auto; }
   .credentials { min-height: 0; padding-block: 55px; }
   .testimonial-section { min-height: 520px; }
+  .testimonial-source { display: block; }
   .testimonial-row { grid-template-columns: 46px 1fr 46px; gap: 5px; min-height: 230px; }
   .testimonial-arrow { width: 46px; }
   .contact-grid { grid-template-columns: 1fr; gap: 32px; }
