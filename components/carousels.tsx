@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useState, type FocusEvent, type PointerEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type FocusEvent, type PointerEvent } from "react";
 import { galleryImages, googleReviewsUrl, services, testimonials } from "@/lib/site-data";
 import { ChevronIcon, InlineArrowIcon } from "./icons";
 
@@ -39,23 +39,42 @@ function CarouselDots({ labels, index, onSelect }: { labels: string[]; index: nu
   return <div className="slider-dots">{labels.map((label, dot) => <button key={label} type="button" aria-label={label} aria-current={dot === index ? "true" : undefined} className={dot === index ? "is-active" : ""} onClick={() => onSelect(dot)} />)}</div>;
 }
 
-const CAROUSEL_INTERVAL_MS = 3500;
+const CAROUSEL_INTERVAL_MS = 5000;
 
 function useAutoCarousel(length: number) {
+  const carouselRef = useRef<HTMLElement>(null);
   const [index, setIndex] = useState(0);
   const [hovered, setHovered] = useState(false);
   const [keyboardFocused, setKeyboardFocused] = useState(false);
 
   useEffect(() => {
-    if (hovered || keyboardFocused || length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const timer = window.setInterval(() => setIndex((value) => (value + 1) % length), CAROUSEL_INTERVAL_MS);
-    return () => window.clearInterval(timer);
+    if (!carouselRef.current || hovered || keyboardFocused || length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const carousels = Array.from(document.querySelectorAll("[data-autoplay-carousel]"));
+    const position = Math.max(0, carousels.indexOf(carouselRef.current));
+    const phase = (position % 2) * (CAROUSEL_INTERVAL_MS / 2);
+    let timer: number;
+
+    // A shared clock keeps alternating sections staggered, including after a pause.
+    const scheduleNext = () => {
+      const elapsed = ((performance.now() - phase) % CAROUSEL_INTERVAL_MS + CAROUSEL_INTERVAL_MS) % CAROUSEL_INTERVAL_MS;
+      const delay = Math.ceil(CAROUSEL_INTERVAL_MS - elapsed);
+      timer = window.setTimeout(() => {
+        setIndex((value) => (value + 1) % length);
+        scheduleNext();
+      }, delay);
+    };
+
+    scheduleNext();
+    return () => window.clearTimeout(timer);
   }, [length, hovered, keyboardFocused]);
 
   return {
     index,
     setIndex,
     interactionProps: {
+      ref: carouselRef,
+      "data-autoplay-carousel": true,
       onPointerEnter: (event: PointerEvent<HTMLElement>) => {
         if (event.pointerType === "mouse") setHovered(true);
       },
