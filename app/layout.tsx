@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Montserrat, Poppins } from "next/font/google";
 import "./globals.css";
+import favicon from "@/public/assets/optimized/favicon-32.png";
+import appleIcon from "@/public/assets/optimized/favicon-180.png";
 
 const montserrat = Montserrat({
   variable: "--font-heading",
@@ -25,9 +27,9 @@ export const metadata: Metadata = {
     "Auckland residential builders specialising in renovations, additions, character-home restoration, outdoor living and project management.",
   metadataBase: new URL("https://www.gdb.co.nz"),
   icons: {
-    icon: [{ url: "/assets/gdb-favicon-black.png", type: "image/png", sizes: "1254x1254" }],
-    shortcut: "/assets/gdb-favicon-black.png",
-    apple: "/assets/gdb-favicon-black.png",
+    icon: [{ url: favicon.src, type: "image/png", sizes: "32x32" }],
+    shortcut: favicon.src,
+    apple: appleIcon.src,
   },
 };
 

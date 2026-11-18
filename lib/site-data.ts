@@ -1,3 +1,5 @@
+import { artwork, photos } from "./image-assets";
+
 export const contact = {
   phoneDisplay: "021 970 066",
   phoneHref: "tel:+6421970066",
@@ -12,36 +14,36 @@ export const contact = {
 };
 
 export const services = [
-  { title: "Outdoor Living", href: "/services#outdoor-living", image: "/assets/outdoor-living.png" },
-  { title: "Renovations, Additions & Alterations", href: "/services#renovations", image: "/assets/hero-renovations.png" },
-  { title: "New Builds", href: "/services#new-builds", image: "/assets/hero-services.png" },
-  { title: "Project Management", href: "/services#project-management", image: "/assets/project-management.png" },
+  { title: "Outdoor Living", href: "/services#outdoor-living", image: photos.outdoorLiving },
+  { title: "Renovations, Additions & Alterations", href: "/services#renovations", image: photos.heroRenovations },
+  { title: "New Builds", href: "/services#new-builds", image: photos.heroServices },
+  { title: "Project Management", href: "/services#project-management", image: photos.projectManagement },
 ];
 
 export const galleryImages = [
-  { src: "/assets/gallery-fence.png", alt: "Finished timber fence and garden edging" },
-  { src: "/assets/gallery-kitchen.png", alt: "Renovated dark kitchen" },
-  { src: "/assets/hero-services.png", alt: "Completed modern kitchen" },
-  { src: "/assets/gallery-window.png", alt: "Detailed interior window renovation" },
-  { src: "/assets/gallery-bathroom.png", alt: "Completed bathroom joinery" },
-  { src: "/assets/gallery-villa.jpg", alt: "Character villa restoration" },
-  { src: "/assets/gallery-aerial.jpg", alt: "New build framing from above" },
+  { src: photos.galleryFence, alt: "Finished timber fence and garden edging" },
+  { src: photos.galleryKitchen, alt: "Renovated dark kitchen" },
+  { src: photos.heroServices, alt: "Completed modern kitchen" },
+  { src: photos.galleryWindow, alt: "Detailed interior window renovation" },
+  { src: photos.galleryBathroom, alt: "Completed bathroom joinery" },
+  { src: photos.galleryVilla, alt: "Character villa restoration" },
+  { src: photos.galleryAerial, alt: "New build framing from above" },
 ];
 
 export const renovationGalleryImages = [
   galleryImages[5],
   galleryImages[0],
-  { src: "/assets/hero-renovations.png", alt: "Finished renovation detail" },
-  { src: "/assets/alterations.jpg", alt: "Addition framing in progress" },
+  { src: photos.heroRenovations, alt: "Finished renovation detail" },
+  { src: photos.alterations, alt: "Addition framing in progress" },
   ...galleryImages.slice(1, 4),
 ];
 
 export const values = [
-  { title: "Trust", icon: "/assets/value-trust.png", text: "We keep you informed with clear communication, openness on site and dependable follow-through, so you know what’s happening at every stage of your build." },
-  { title: "Flexibility", icon: "/assets/value-flexibility.png", text: "Every project is different. We listen, respond to changing needs and adapt our approach to work around your priorities and the requirements of the job." },
-  { title: "Quality", icon: "/assets/value-quality.png", text: "We take pride in strong workmanship, tidy sites and attention to detail. From preparation to finishing touches, we do the job properly, without shortcuts." },
-  { title: "Confidence", icon: "/assets/value-confidence.png", text: "With strong financial management, a commitment to compliance and organised project oversight, we provide a reliable foundation for your building project." },
-  { title: "Practicality", icon: "/assets/value-practicality.png", text: "When challenges arise, we assess the options, explain the choices and find practical ways forward that keep your project moving and your goals in focus." },
+  { title: "Trust", icon: artwork.trust, text: "We keep you informed with clear communication, openness on site and dependable follow-through, so you know what’s happening at every stage of your build." },
+  { title: "Flexibility", icon: artwork.flexibility, text: "Every project is different. We listen, respond to changing needs and adapt our approach to work around your priorities and the requirements of the job." },
+  { title: "Quality", icon: artwork.quality, text: "We take pride in strong workmanship, tidy sites and attention to detail. From preparation to finishing touches, we do the job properly, without shortcuts." },
+  { title: "Confidence", icon: artwork.confidence, text: "With strong financial management, a commitment to compliance and organised project oversight, we provide a reliable foundation for your building project." },
+  { title: "Practicality", icon: artwork.practicality, text: "When challenges arise, we assess the options, explain the choices and find practical ways forward that keep your project moving and your goals in focus." },
 ];
 
 export const googleReviewsUrl = "https://www.google.com/maps/place/Great+Dane+Builders+LTD/@-36.52411,173.5831902,8z/data=!4m8!3m7!1s0x20e50df38bdea9e1:0x8b16677029fb1022!8m2!3d-36.5313753!4d174.9024663!9m1!1b1!16s%2Fg%2F11ygpd3980";
