@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState, type FocusEvent, type PointerEvent } from "react";
-import { galleryImages, services, testimonials } from "@/lib/site-data";
+import { galleryImages, googleReviewsUrl, services, testimonials } from "@/lib/site-data";
 import { ChevronIcon, InlineArrowIcon } from "./icons";
 
 const outdoorLivingImages = [
@@ -33,6 +33,10 @@ const newBuildImages = [
 
 function Arrows({ onPrev, onNext, label }: { onPrev: () => void; onNext: () => void; label: string }) {
   return <><button className="carousel-arrow carousel-arrow--prev" type="button" onClick={onPrev} aria-label={`Previous ${label}`}><ChevronIcon direction="left" /></button><button className="carousel-arrow carousel-arrow--next" type="button" onClick={onNext} aria-label={`Next ${label}`}><ChevronIcon direction="right" /></button></>;
+}
+
+function CarouselDots({ labels, index, onSelect }: { labels: string[]; index: number; onSelect: (index: number) => void }) {
+  return <div className="slider-dots">{labels.map((label, dot) => <button key={label} type="button" aria-label={label} aria-current={dot === index ? "true" : undefined} className={dot === index ? "is-active" : ""} onClick={() => onSelect(dot)} />)}</div>;
 }
 
 const CAROUSEL_INTERVAL_MS = 3500;
@@ -66,8 +70,6 @@ export function ServicesCarousel() {
   const { index, setIndex, interactionProps } = useAutoCarousel(services.length);
   const ordered = useMemo(() => [...services.slice(index), ...services.slice(0, index)], [index]);
   const move = (amount: number) => setIndex((value) => (value + amount + services.length) % services.length);
-  const pageCount = Math.ceil(services.length / 2);
-  const activePage = Math.floor(index / 2);
   return (
     <section className="dark-panel services-carousel" {...interactionProps}>
       <h2>Your Home. Our Expertise.</h2>
@@ -77,7 +79,7 @@ export function ServicesCarousel() {
         </div>
         <Arrows onPrev={() => move(-1)} onNext={() => move(1)} label="service" />
       </div>
-      <div className="slider-controls"><div className="slider-dots">{Array.from({ length: pageCount }, (_, page) => <button key={page} type="button" aria-label={`Show services ${page * 2 + 1} and ${Math.min(page * 2 + 2, services.length)}`} className={page === activePage ? "is-active" : ""} onClick={() => setIndex(page * 2)} />)}</div></div>
+      <div className="slider-controls"><CarouselDots labels={services.map((service) => `Show service: ${service.title}`)} index={index} onSelect={setIndex} /></div>
     </section>
   );
 }
@@ -105,7 +107,7 @@ export function OutdoorLivingShowcase() {
         {ordered.slice(0, 4).map((item) => <div className="outdoor-showcase__thumb" key={item.src}><Image src={item.src} alt={item.alt} fill unoptimized sizes="(max-width: 780px) calc(100vw - 88px), 23vw" /></div>)}
       </div>
       <div className="outdoor-showcase__controls">
-        <div className="slider-dots">{outdoorLivingGalleryImages.map((_, dot) => <button key={dot} type="button" aria-label={`Show outdoor project ${dot + 1}`} className={dot === index ? "is-active" : ""} onClick={() => setIndex(dot)} />)}</div>
+        <CarouselDots labels={outdoorLivingGalleryImages.map((_, dot) => `Show outdoor project ${dot + 1}`)} index={index} onSelect={setIndex} />
         <div className="outdoor-showcase__arrows">
           <button type="button" onClick={() => move(-1)} aria-label="Previous outdoor project"><ChevronIcon direction="left" /></button>
           <button type="button" onClick={() => move(1)} aria-label="Next outdoor project"><ChevronIcon direction="right" /></button>
@@ -139,7 +141,7 @@ export function NewBuildsShowcase() {
         {ordered.slice(0, 4).map((item) => <div className="new-build-showcase__thumb" key={item.src}><Image src={item.src} alt={item.alt} fill unoptimized sizes="(max-width: 780px) calc(100vw - 44px), 28vw" /></div>)}
       </div>
       <div className="new-build-showcase__controls">
-        <div className="slider-dots">{newBuildImages.map((_, dot) => <button key={dot} type="button" aria-label={`Show new build project ${dot + 1}`} className={dot === index ? "is-active" : ""} onClick={() => setIndex(dot)} />)}</div>
+        <CarouselDots labels={newBuildImages.map((_, dot) => `Show new build project ${dot + 1}`)} index={index} onSelect={setIndex} />
         <div className="new-build-showcase__arrows">
           <button type="button" onClick={() => move(-1)} aria-label="Previous new build project"><ChevronIcon direction="left" /></button>
           <button type="button" onClick={() => move(1)} aria-label="Next new build project"><ChevronIcon direction="right" /></button>
@@ -157,7 +159,7 @@ export function Gallery({ images = galleryImages, title = "Our Work", dark = tru
     <section className={`${dark ? "dark-panel" : ""} gallery-section`} {...interactionProps}>
       <h2>{title}</h2>
       <div className="carousel-stage gallery-stage"><div className="gallery-viewport"><div className="gallery-track" key={index}>{ordered.slice(0, 4).map((item, i) => <div className="gallery-image" key={`${item.src}-${i}`}><Image src={item.src} alt={item.alt} fill quality={100} sizes="(max-width: 780px) calc(100vw - 44px), 25vw" /></div>)}</div></div><Arrows onPrev={() => move(-1)} onNext={() => move(1)} label="gallery image" /></div>
-      <div className="slider-controls"><div className="slider-dots">{images.map((_, dot) => <button key={dot} type="button" aria-label={`Show image ${dot + 1}`} className={dot === index ? "is-active" : ""} onClick={() => setIndex(dot)} />)}</div></div>
+      <div className="slider-controls"><CarouselDots labels={images.map((_, dot) => `Show image ${dot + 1}`)} index={index} onSelect={setIndex} /></div>
     </section>
   );
 }
@@ -167,6 +169,15 @@ export function Testimonials() {
   const move = (amount: number) => setIndex((value) => (value + amount + testimonials.length) % testimonials.length);
   const current = testimonials[index];
   return (
-    <section className="dark-panel testimonial-section" {...interactionProps}><h2>Trusted By Our Clients</h2><div className="testimonial-row"><button className="carousel-arrow testimonial-arrow" type="button" onClick={() => move(-1)} aria-label="Previous testimonial"><ChevronIcon direction="left" /></button><blockquote key={index}><p>{current.quote}</p><cite>{current.name}</cite></blockquote><button className="carousel-arrow testimonial-arrow" type="button" onClick={() => move(1)} aria-label="Next testimonial"><ChevronIcon direction="right" /></button></div><div className="slider-dots">{testimonials.map((_, dot) => <button key={dot} type="button" aria-label={`Show testimonial ${dot + 1}`} className={dot === index ? "is-active" : ""} onClick={() => setIndex(dot)} />)}</div></section>
+    <section className="dark-panel testimonial-section" {...interactionProps}>
+      <h2>Trusted By Our Clients</h2>
+      <div className="testimonial-row">
+        <button className="carousel-arrow testimonial-arrow" type="button" onClick={() => move(-1)} aria-label="Previous testimonial"><ChevronIcon direction="left" /></button>
+        <blockquote key={index}><p>{current.quote}</p><cite>{current.name}</cite></blockquote>
+        <button className="carousel-arrow testimonial-arrow" type="button" onClick={() => move(1)} aria-label="Next testimonial"><ChevronIcon direction="right" /></button>
+      </div>
+      <CarouselDots labels={testimonials.map((_, dot) => `Show testimonial ${dot + 1}`)} index={index} onSelect={setIndex} />
+      <a className="testimonial-source" href={googleReviewsUrl} target="_blank" rel="noreferrer">Read the full reviews on Google</a>
+    </section>
   );
 }

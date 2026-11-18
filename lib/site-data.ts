@@ -36,12 +36,14 @@ export const values = [
   { title: "Practicality", icon: "/assets/value-practicality.png", text: "When challenges arise, we assess the options, explain the choices and find practical ways forward that keep your project moving and your goals in focus." },
 ];
 
+export const googleReviewsUrl = "https://www.google.com/maps/place/Great+Dane+Builders+LTD/@-36.52411,173.5831902,8z/data=!4m8!3m7!1s0x20e50df38bdea9e1:0x8b16677029fb1022!8m2!3d-36.5313753!4d174.9024663!9m1!1b1!16s%2Fg%2F11ygpd3980";
+
+// Short excerpts from the six Google reviews verified on 18 November 2026.
 export const testimonials = [
   { quote: "Our builders for over 6 years and multiple projects. Couldn’t rate them more highly.", name: "Toni Beattie" },
-  { quote: "Phoned Dane late in the afternoon for a urgent job, him and his team turned up early the next morning and worked through the rain, hail & mud to complete the job at hand, top workmanship, great guy with a eye to detail & great ideas with great chat aswell. Highly recommend!! Cheers guys", name: "Marc Woolley" },
-  { quote: "I used Dan and his team for some Reno on my house. Everything went TK plan and stayed within the budget. Great communication throughout the process. Highly recommend for all your building needs. Would use again.", name: "Nick Cory" },
-  { quote: "Not only did the owner, Dane, make everything easy for me to understand right from the beginning, he also made sure to keep great comms with me the whole way through. I always felt as though Dane and his lads had things under control. Thanks GDB for your awesome work ethic and amazing skills. They’re super professional, easy going, and gave me peace of mind. I can’t recommend these guys enough.", name: "Katrina Wass" },
-  { quote: "Dane and his team have been amazing. Transformed my house into a work of art and allowed me to have my input and discuss things to come up with solutions. My job was not small and my house was architecturally designed in its day and he was very on board with keeping things in line with the original design. Also very clean and tidy. Would highly recommend!", name: "Natalie McMillin" },
-  { quote: "We’ve worked with Dane now across three properties over more than six years and couldn’t recommend him more highly. He’s incredibly professional, trustworthy, communicates openly, and consistently delivers high-quality work. His overall project management skills are awesome including his management of all of the sub-trades which has always delivered a great outcome with clarity on the cost and timing of the overall project.\n\nHis solutions-focused approach to challenges unavoidable in renovation projects has really set him apart for us. No matter the problem, Dane has always found a practical way forward and gotten us out of some sticky situations. Would highly recommend GDB to anybody needing a reliable, high quality team that stands behind their work. This is a testimonial from a current customer.", name: "John Doe" },
-  { quote: "After maxing out our skills during our renovation, we called in Dane and Alex to take the reins and complete it properly! Dane was amazing at project managing our kitchen, bathroom and exterior upgrade. Him and Alex set the bar high and everything else fell into place. They were the tidiest tradies we’ve had around and the communication was top notch. Wouldn’t hesitate to use Dane and his team for any future work.", name: "Janel Reid" },
+  { quote: "Dane and his team have been amazing. Transformed my house into a work of art…", name: "Natalie McMillin" },
+  { quote: "Dane was amazing at project managing our kitchen, bathroom and exterior upgrade.", name: "Janel Reid" },
+  { quote: "Great communication throughout the process. Highly recommend for all your building needs. Would use again.", name: "Nick Cory" },
+  { quote: "They're super professional, easy going, and gave me peace of mind. I can't recommend these guys enough.", name: "Katrina Wass" },
+  { quote: "…top workmanship, great guy with a eye to detail & great ideas with great chat aswell Highly recommend!!", name: "Marc Woolley" },
 ];
