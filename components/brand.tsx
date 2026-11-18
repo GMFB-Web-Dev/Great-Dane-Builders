@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export function Logo({ className = "" }: { className?: string }) {
+export function Logo({ className = "", onClick }: { className?: string; onClick?: () => void }) {
   return (
-    <Link href="/" aria-label="Great Dane Builders home" className={`brand-logo ${className}`}>
+    <Link href="/" aria-label="Great Dane Builders home" className={`brand-logo ${className}`} onClick={onClick}>
       <svg viewBox="0 120 500 190" role="img" aria-label="Great Dane Builders" className="brand-logo__artwork">
         <image href="/assets/gdb-logo.png" width="500" height="500" />
       </svg>
