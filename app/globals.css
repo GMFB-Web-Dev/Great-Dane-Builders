@@ -242,6 +242,7 @@ h2 { color: var(--muted); font-size: clamp(46px, 5.55vw, 80px); font-weight: 500
 .contact-map-wide { margin: 0 var(--gutter) 33px; height: 538px; min-height: 0; }
 
 /* Service pages */
+.renovations-showcase__gallery { display: none; }
 .service-block { min-height: 706px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; padding: 33px var(--gutter); scroll-margin-top: 90px; }
 .service-block--dark { border-radius: 100px; }
 .service-block--image-first .service-copy { order: 2; }
@@ -379,6 +380,16 @@ h2 { color: var(--muted); font-size: clamp(46px, 5.55vw, 80px); font-weight: 500
   .contact-map-wide { height: 460px; }
   .service-block--image-first .service-copy { order: 1; }
   .service-block--image-first .service-image { order: 2; }
+  .services-page .service-block > .service-image { order: -1; }
+  .services-page .service-block > .service-copy { order: 0; }
+  .services-page .new-build-showcase__main { order: -1; }
+  .renovations-showcase__gallery { display: block; }
+  .services-page .renovations-showcase .service-block,
+  .services-page .project-management-showcase .service-block { padding-bottom: 0; }
+  .services-page .renovations-showcase .gallery-section,
+  .services-page .project-management-showcase .gallery-section { padding-top: 28px; padding-bottom: 30px; }
+  .services-page .renovations-showcase .slider-controls,
+  .services-page .project-management-showcase .slider-controls { margin-top: 26px; }
   .footer-top { grid-template-columns: 1fr; justify-items: center; gap: 22px; }
   .footer-top nav { flex-wrap: wrap; gap: 18px 24px; font-size: 16px; }
   .footer-bottom { font-size: 13px; }

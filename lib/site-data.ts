@@ -28,6 +28,14 @@ export const galleryImages = [
   { src: "/assets/gallery-aerial.jpg", alt: "New build framing from above" },
 ];
 
+export const renovationGalleryImages = [
+  galleryImages[5],
+  galleryImages[0],
+  { src: "/assets/hero-renovations.png", alt: "Finished renovation detail" },
+  { src: "/assets/alterations.jpg", alt: "Addition framing in progress" },
+  ...galleryImages.slice(1, 4),
+];
+
 export const values = [
   { title: "Trust", icon: "/assets/value-trust.png", text: "We keep you informed with clear communication, openness on site and dependable follow-through, so you know what’s happening at every stage of your build." },
   { title: "Flexibility", icon: "/assets/value-flexibility.png", text: "Every project is different. We listen, respond to changing needs and adapt our approach to work around your priorities and the requirements of the job." },

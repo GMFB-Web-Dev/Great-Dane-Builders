@@ -5,7 +5,7 @@ import { Gallery } from "@/components/carousels";
 import { ContactForm, ContactIntro } from "@/components/contact";
 import { Footer } from "@/components/footer";
 import { Reveal } from "@/components/reveal";
-import { galleryImages } from "@/lib/site-data";
+import { renovationGalleryImages } from "@/lib/site-data";
 
 export const metadata: Metadata = { title: "Renovations, Additions & Alterations" };
 
@@ -53,6 +53,6 @@ export default function RenovationsPage() {
       </ul>
       <p>The key is making sure the changes feel like they belong. New areas need to work with the existing structure, layout and style of the property while meeting the practical needs of the household. Whether adding more room or reworking what is already there, the result should feel connected to the original home rather than added on as an afterthought.</p>
     </ServiceBlock>
-    <Reveal><Gallery images={[galleryImages[5], galleryImages[0], { src: "/assets/hero-renovations.png", alt: "Finished renovation detail" }, { src: "/assets/alterations.jpg", alt: "Addition framing in progress" }, ...galleryImages.slice(1, 4)]} /></Reveal>
+    <Reveal><Gallery images={renovationGalleryImages} /></Reveal>
     <Reveal><ContactIntro /></Reveal><Reveal><ContactForm /></Reveal><Footer /></main>;
 }

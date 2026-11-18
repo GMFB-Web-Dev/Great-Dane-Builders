@@ -6,13 +6,16 @@ import { ContactIntro } from "@/components/contact";
 import { Footer } from "@/components/footer";
 import { VanLink } from "@/components/brand";
 import { Reveal } from "@/components/reveal";
-import { galleryImages } from "@/lib/site-data";
+import { galleryImages, renovationGalleryImages } from "@/lib/site-data";
 
 export const metadata: Metadata = { title: "Services" };
 
 export default function ServicesPage() {
-  return <main><Hero image="/assets/hero-services.png" imagePosition="center 58%" title="Your Project, Built Right" text="From renovations and outdoor living to new builds and project management, GDB has the resources and trusted trades to manage projects of all sizes." secondaryLabel="About us" secondaryHref="/about" />
+  return <main className="services-page"><Hero image="/assets/hero-services.png" imagePosition="center 58%" title="Your Project, Built Right" text="From renovations and outdoor living to new builds and project management, GDB has the resources and trusted trades to manage projects of all sizes." secondaryLabel="About us" secondaryHref="/about" />
+    <div className="renovations-showcase">
     <ServiceBlock id="renovations" title="Renovations" image="/assets/renovations.png" imageAlt="Renovated interior with a timber screen and polished concrete floor" imagePosition="center top"><p>Renovating gives you the opportunity to improve how your existing home looks, feels and functions without starting again. From individual spaces to substantial full-home renovations, the work can be planned around your existing property and what you want to achieve.</p><strong>Renovation work can include:</strong><ul>{["Kitchen renovations", "Bathroom and laundry renovations", "Living areas and bedrooms", "Internal layout changes", "Wall removal and structural changes", "New finishes and interior building work", "Full-home renovations"].map((item) => <li key={item}>{item}</li>)}</ul><p>Working within an existing home can uncover challenges that are not always visible at the beginning. Careful planning and practical problem-solving help address these as they arise, while bringing the old and new parts of the home together in a way that feels functional and considered.</p><VanLink href="/services/renovations" variant="dark">Learn more</VanLink></ServiceBlock>
+      <Reveal className="renovations-showcase__gallery"><Gallery images={renovationGalleryImages} title="" dark={false} /></Reveal>
+    </div>
     <Reveal><OutdoorLivingShowcase /></Reveal>
     <Reveal><NewBuildsShowcase /></Reveal>
     <div className="project-management-showcase">
