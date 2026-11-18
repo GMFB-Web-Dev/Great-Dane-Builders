@@ -13,7 +13,7 @@ export const contact = {
 
 export const services = [
   { title: "Outdoor Living", href: "/services#outdoor-living", image: "/assets/outdoor-living.png" },
-  { title: "Renovations, Additions & Alterations", href: "/services/renovations", image: "/assets/hero-renovations.png" },
+  { title: "Renovations, Additions & Alterations", href: "/services#renovations", image: "/assets/hero-renovations.png" },
   { title: "New Builds", href: "/services#new-builds", image: "/assets/hero-services.png" },
   { title: "Project Management", href: "/services#project-management", image: "/assets/project-management.png" },
 ];

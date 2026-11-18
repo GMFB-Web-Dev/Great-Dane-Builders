@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type FocusEvent, type PointerEvent } from "react";
 import { galleryImages, services, testimonials } from "@/lib/site-data";
 import { ChevronIcon, InlineArrowIcon } from "./icons";
 
@@ -35,30 +35,35 @@ function Arrows({ onPrev, onNext, label }: { onPrev: () => void; onNext: () => v
   return <><button className="carousel-arrow carousel-arrow--prev" type="button" onClick={onPrev} aria-label={`Previous ${label}`}><ChevronIcon direction="left" /></button><button className="carousel-arrow carousel-arrow--next" type="button" onClick={onNext} aria-label={`Next ${label}`}><ChevronIcon direction="right" /></button></>;
 }
 
-function useAutoCarousel(length: number, delay: number) {
+const CAROUSEL_INTERVAL_MS = 3500;
+
+function useAutoCarousel(length: number) {
   const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [keyboardFocused, setKeyboardFocused] = useState(false);
 
   useEffect(() => {
-    if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const timer = window.setInterval(() => setIndex((value) => (value + 1) % length), delay);
+    if (hovered || keyboardFocused || length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timer = window.setInterval(() => setIndex((value) => (value + 1) % length), CAROUSEL_INTERVAL_MS);
     return () => window.clearInterval(timer);
-  }, [delay, length, paused]);
+  }, [length, hovered, keyboardFocused]);
 
   return {
     index,
     setIndex,
     interactionProps: {
-      onMouseEnter: () => setPaused(true),
-      onMouseLeave: () => setPaused(false),
-      onFocusCapture: () => setPaused(true),
-      onBlurCapture: () => setPaused(false),
+      onPointerEnter: (event: PointerEvent<HTMLElement>) => {
+        if (event.pointerType === "mouse") setHovered(true);
+      },
+      onPointerLeave: () => setHovered(false),
+      onFocusCapture: (event: FocusEvent<HTMLElement>) => setKeyboardFocused(event.target.matches(":focus-visible")),
+      onBlurCapture: () => setKeyboardFocused(false),
     },
   };
 }
 
 export function ServicesCarousel() {
-  const { index, setIndex, interactionProps } = useAutoCarousel(services.length, 5200);
+  const { index, setIndex, interactionProps } = useAutoCarousel(services.length);
   const ordered = useMemo(() => [...services.slice(index), ...services.slice(0, index)], [index]);
   const move = (amount: number) => setIndex((value) => (value + amount + services.length) % services.length);
   const pageCount = Math.ceil(services.length / 2);
@@ -78,7 +83,7 @@ export function ServicesCarousel() {
 }
 
 export function OutdoorLivingShowcase() {
-  const { index, setIndex, interactionProps } = useAutoCarousel(outdoorLivingGalleryImages.length, 5600);
+  const { index, setIndex, interactionProps } = useAutoCarousel(outdoorLivingGalleryImages.length);
   const ordered = useMemo(() => [...outdoorLivingGalleryImages.slice(index), ...outdoorLivingGalleryImages.slice(0, index)], [index]);
   const move = (amount: number) => setIndex((value) => (value + amount + outdoorLivingGalleryImages.length) % outdoorLivingGalleryImages.length);
 
@@ -111,7 +116,7 @@ export function OutdoorLivingShowcase() {
 }
 
 export function NewBuildsShowcase() {
-  const { index, setIndex, interactionProps } = useAutoCarousel(newBuildImages.length, 5600);
+  const { index, setIndex, interactionProps } = useAutoCarousel(newBuildImages.length);
   const ordered = useMemo(() => [...newBuildImages.slice(index), ...newBuildImages.slice(0, index)], [index]);
   const move = (amount: number) => setIndex((value) => (value + amount + newBuildImages.length) % newBuildImages.length);
 
@@ -145,7 +150,7 @@ export function NewBuildsShowcase() {
 }
 
 export function Gallery({ images = galleryImages, title = "Our Work", dark = true }: { images?: typeof galleryImages; title?: string; dark?: boolean }) {
-  const { index, setIndex, interactionProps } = useAutoCarousel(images.length, 4600);
+  const { index, setIndex, interactionProps } = useAutoCarousel(images.length);
   const ordered = useMemo(() => [...images.slice(index), ...images.slice(0, index)], [images, index]);
   const move = (amount: number) => setIndex((value) => (value + amount + images.length) % images.length);
   return (
@@ -158,7 +163,7 @@ export function Gallery({ images = galleryImages, title = "Our Work", dark = tru
 }
 
 export function Testimonials() {
-  const { index, setIndex, interactionProps } = useAutoCarousel(testimonials.length, 6500);
+  const { index, setIndex, interactionProps } = useAutoCarousel(testimonials.length);
   const move = (amount: number) => setIndex((value) => (value + amount + testimonials.length) % testimonials.length);
   const current = testimonials[index];
   return (

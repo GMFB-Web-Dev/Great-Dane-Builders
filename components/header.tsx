@@ -8,7 +8,7 @@ import { Logo, VanLink } from "./brand";
 
 const nav = [
   { href: "/", label: "Home" },
-  { href: "/services", label: "Services", menu: true },
+  { href: "/services", label: "Services" },
   { href: "/about", label: "About Us" },
   { href: "/contact", label: "Contact Us" },
 ];
@@ -32,22 +32,7 @@ export function Header() {
         <nav className="main-nav" aria-label="Primary navigation">
           {nav.map((item) => {
             const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
-            return item.menu ? (
-              <div className={`nav-menu ${active ? "is-active" : ""}`} key={item.href}>
-                <Link href={item.href}>
-                  {item.label}
-                  <svg className="nav-chevron" viewBox="0 0 12 7" aria-hidden="true" focusable="false">
-                    <path d="M1 1l5 5 5-5" />
-                  </svg>
-                </Link>
-                <div className="nav-dropdown">
-                  <Link href="/services/renovations">Renovations</Link>
-                  <Link href="/services#outdoor-living">Outdoor Living</Link>
-                  <Link href="/services#new-builds">New Builds</Link>
-                  <Link href="/services#project-management">Project Management</Link>
-                </div>
-              </div>
-            ) : <Link key={item.href} className={active ? "is-active" : ""} href={item.href}>{item.label}</Link>;
+            return <Link key={item.href} className={active ? "is-active" : ""} href={item.href} aria-current={active ? "page" : undefined} onClick={() => setOpen(false)}>{item.label}</Link>;
           })}
         </nav>
         <div className="header-phone"><VanLink href={contact.phoneHref}>{contact.phoneDisplay}</VanLink></div>
